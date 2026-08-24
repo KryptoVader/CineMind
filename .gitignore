@@ -1,18 +1,31 @@
-# Python-generated files
+# Python-generated files & bytecode
 __pycache__/
 *.py[oc]
 build/
 dist/
 wheels/
 *.egg-info
+.pytest_cache/
+.coverage
 
-# Virtual environments
-.venv
+# Virtual environments & Local credentials
+.venv/
+env/
+venv/
 .env
+.env.local
 
-# Data (too large for git)
-src/data/raw/
-src/data/staging/
-src/data/canonical/
-src/data/checkpoints/
-src/data/reports/
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Internal Data, Audits, Reports & Checkpoints (Local only)
+data/
+src/data/
+*.parquet
+*.jsonl
+*.log
+scratch/
+.ipynb_checkpoints/

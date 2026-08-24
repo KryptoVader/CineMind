@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-08-23 03:32:59",
+  "raw_files": [
+    {
+      "source_file": "raw\\tmdb\\discovery_movies.jsonl",
+      "label": "TMDB Movies",
+      "record_count": 363264,
+      "unique_source_ids": 363264,
+      "duplicate_source_ids": 0,
+      "null_source_ids": 0,
+      "malformed_records": 0
+    },
+    {
+      "source_file": "raw\\tmdb\\discovery_tv.jsonl",
+      "label": "TMDB TV",
+      "record_count": 112563,
+      "unique_source_ids": 112563,
+      "duplicate_source_ids": 0,
+      "null_source_ids": 0,
+      "malformed_records": 0
+    },
+    {
+      "source_file": "raw\\mal\\discovery.jsonl",
+      "label": "MAL Discovery",
+      "record_count": 23503,
+      "unique_source_ids": 23503,
+      "duplicate_source_ids": 0,
+      "null_source_ids": 0,
+      "malformed_records": 0
+    }
+  ],
+  "total_raw_records": 499330,
+  "total_raw_unique_ids": 499330
+}

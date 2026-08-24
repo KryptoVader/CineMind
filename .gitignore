@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+
+# Data (too large for git)
+src/data/raw/
+src/data/staging/
+src/data/canonical/
+src/data/checkpoints/
+src/data/reports/

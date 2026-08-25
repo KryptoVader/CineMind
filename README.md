@@ -1,10 +1,10 @@
 # CineMind
 
-Preference-learning recommendation system for movies, TV series, and anime.
+A guesser system for movies, TV series, and anime.
 
-## Data Pipeline
+## Data Pipeline & Guesser Analytics Layer
 
-The data pipeline lives in `src/pipeline/` and is responsible for acquiring, normalizing, deduplicating, and auditing the candidate title universe from multiple sources.
+The data pipeline lives in `src/pipeline/` and is responsible for acquiring, normalizing, deduplicating, canonicalizing, auditing, and building the ML/EDA analytics layer from multiple sources.
 
 ### Architecture
 
@@ -23,9 +23,14 @@ src/pipeline/
 │   └── normalizer.py      # MAL → normalized schema
 ├── canonical/
 │   ├── entity.py          # Canonical entity builder
-│   └── matcher.py         # Cross-source entity resolution
+│   ├── matcher.py         # Candidate-blocked cross-source entity resolution
+│   └── sampler.py         # Deterministic stratified diversity sampler
+├── analytics/
+│   ├── builder.py         # Analytics views builder (development_*)
+│   ├── validator.py       # Automated analytics dataset validation
+│   └── report.py          # Master 30-section DEVELOPMENT_DATASET_REPORT generator
 ├── audit/
-│   └── reports.py         # Population/quality/discovery reports
+│   └── reports.py         # Master pipeline audit & quality reports
 └── cli.py                 # CLI entry point
 ```
 
@@ -52,10 +57,6 @@ python -m pipeline.cli discover tmdb
 # MAL only
 python -m pipeline.cli discover mal
 
-# Limited test runs
-python -m pipeline.cli discover tmdb --years 2023 2024
-python -m pipeline.cli discover mal --ranking-types all tv
-
 # --- PROCESSING ---
 # Normalize + deduplicate + build canonical dataset
 python -m pipeline.cli process
@@ -64,16 +65,20 @@ python -m pipeline.cli process
 # Cross-source matching (TMDB ↔ MAL)
 python -m pipeline.cli match
 
+# --- DIVERSITY SAMPLING ---
+# Run stratified diversity sampling into diverse_100k.parquet
+python -m pipeline.cli sample
+
 # --- AUDITING ---
-# Generate population, quality, and discovery reports
+# Generate master pipeline audit reports (CINEMIND_DATA_AUDIT.md)
 python -m pipeline.cli audit
 
-# --- STATUS ---
-# Check pipeline progress
-python -m pipeline.cli status
+# --- ANALYTICS & EDA DATASETS ---
+# Build source-separated analytical datasets & DEVELOPMENT_DATASET_REPORT.md
+python -m pipeline.cli analytics
 
-# --- EXPORT ---
-# Show candidate dataset summary
+# --- STATUS & EXPORT ---
+python -m pipeline.cli status
 python -m pipeline.cli export
 ```
 
@@ -81,84 +86,31 @@ python -m pipeline.cli export
 
 ```
 src/data/
-├── raw/
-│   ├── tmdb/
-│   │   ├── discovery_movies.jsonl    # Raw TMDB movie records
-│   │   ├── discovery_tv.jsonl        # Raw TMDB TV records
-│   │   ├── genre_map.json            # Cached genre ID→name mapping
-│   │   ├── movies/                   # Existing detailed JSON (preserved)
-│   │   └── tv/                       # Existing detailed JSON (preserved)
-│   └── mal/
-│       └── discovery.jsonl           # Raw MAL anime records
-├── staging/
-│   ├── tmdb_normalized.parquet       # Normalized TMDB records
-│   └── mal_normalized.parquet        # Normalized MAL records
+├── raw/                      # Raw TMDB & MAL API JSONL discovery dumps
+├── staging/                  # Normalized TMDB & MAL Parquet files
 ├── canonical/
-│   ├── candidates.parquet            # Full candidate universe
-│   ├── cross_source_matches.parquet  # Confirmed cross-source matches
-│   └── unresolved_matches.parquet    # Uncertain match candidates
-├── checkpoints/
-│   ├── tmdb_discovery_state.json     # TMDB discovery progress
-│   └── mal_discovery_state.json      # MAL discovery progress
-└── reports/
-    ├── population_report.md          # Decade/language/genre distributions
-    ├── data_quality_report.md        # Missing data, duplicates, validation
-    └── discovery_contribution.md     # Per-strategy effectiveness
+│   ├── canonical_entities.parquet    # Full canonical universe (~461k entities)
+│   ├── diverse_100k.parquet          # Stratified development sample (~98k entities)
+│   ├── entity_links.parquet          # Verified 1:1 cross-source links (6,445 links)
+│   └── match_candidates.parquet      # Low-confidence match candidates
+├── analytics/
+│   ├── development_entities.parquet  # Primary development dataset (~98k records)
+│   ├── development_tmdb.parquet      # TMDB entity view (81,426 records)
+│   ├── development_mal.parquet       # MAL entity view (23,503 records)
+│   ├── development_shared.parquet    # Verified shared cross-source view (6,453 records)
+│   └── DEVELOPMENT_DATASET_REPORT.md # Master 30-section guesser readiness audit
+├── audit/
+│   └── CINEMIND_DATA_AUDIT.md        # Master 14-safeguard pipeline audit report
+└── checkpoints/               # Discovery progress state files
 ```
 
-### Discovery Strategies
+### Guesser Architecture & Discrimination Attributes
 
-#### TMDB (4 strategies)
+CineMind is an **Akinator-style guesser system**. It progressive eliminates or re-ranks candidate entities based on user answers to binary/multi-choice questions.
 
-1. **Year-by-year**: `discover/movie` and `discover/tv` for every year 1900–current. Gets up to 10,000 results per year (500 pages × 20 results).
-
-2. **Language segmentation**: For high-volume years (≥400 pages), repeats discovery with `with_original_language` filter for 26 languages (ja, ko, hi, zh, fr, de, es, etc.). Surfaces non-English titles buried beyond page 500.
-
-3. **Genre × decade**: Crosses all TMDB genres with 10-year bins. Finds genre-specific titles that popularity sorting may bury.
-
-4. **Low-popularity sweep**: Sorts by `vote_count.asc` with `vote_count.gte=1`. Surfaces obscure titles with minimal votes.
-
-#### MAL (2 strategies)
-
-1. **Ranking discovery**: Paginates 9 ranking types (all, airing, upcoming, tv, movie, ova, special, bypopularity, favorite). Follows `paging.next` until exhaustion.
-
-2. **Systematic search**: ~200 search queries covering Japanese syllables, anime title words, genre terms, English words, and romanized concepts. Tracks marginal contribution per query.
-
-### Resume / Checkpoint
-
-The pipeline is designed for long-running acquisition (6–12+ hours for full discovery). Interrupting with Ctrl+C triggers a graceful shutdown:
-
-1. Current API page finishes
-2. Checkpoint saved to disk (atomic write)
-3. Process exits cleanly
-
-Restarting skips all completed tasks and resumes from the last checkpoint.
-
-### Canonicalization
-
-Each record gets a `cinemind_id`:
-- TMDB records: `tmdb_{tmdb_id}`
-- MAL records: `mal_{mal_id}`
-
-Cross-source matching identifies when TMDB and MAL records refer to the same work (e.g., "Attack on Titan" ↔ "Shingeki no Kyojin"). Matches are stored with confidence levels (high/medium/low) and never auto-merged for uncertain cases.
-
-### Deduplication
-
-1. **Within-source**: Deduplicated by source ID during normalization
-2. **Cross-source**: Conservative matching pipeline with title normalization, year compatibility, and media-type compatibility checks
-
-### Known API Limitations
-
-- **TMDB**: Hard 500-page limit per query (max 10,000 results). Language segmentation and genre×decade strategies work around this.
-- **MAL**: Search queries require ≥3 characters. Ranking populations are finite (typically 10,000–30,000 per type).
-- **TMDB discover**: Returns lightweight records (no credits, keywords, or production details). Full enrichment requires separate detail API calls.
-- **MAL**: All entries assumed `original_language=ja`. Non-Japanese anime (Chinese donghua, Korean manhwa adaptations) will have incorrect language.
-
-### Known Data Quality Limitations
-
-- TMDB discover endpoint does not provide `production_countries` — only available via detail endpoint
-- TMDB `origin_country` only available for TV shows, not movies
-- Some TMDB entries have empty release dates or titles
-- MAL `mean` (rating) is null for entries with insufficient votes
-- Cross-source matching cannot use explicit external IDs without TMDB detail enrichment
-- Fuzzy title matching may miss matches with very different romanizations
+Key attributes preserved for question discovery:
+- `media_type`: High entropy initial splitting question
+- `release_year` / `decade`: Temporal binary/decade questions
+- `original_language`: Language filtering questions
+- `genres`: Multi-label genre presence questions
+- `rating`, `runtime`, `num_episodes`: Threshold questions

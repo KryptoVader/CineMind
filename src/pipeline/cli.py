@@ -148,6 +148,30 @@ def cmd_audit(args: argparse.Namespace) -> None:
     )
 
 
+def cmd_analytics(args: argparse.Namespace) -> None:
+    """Build development datasets, run validation, and generate DEVELOPMENT_DATASET_REPORT.md."""
+    from pipeline.analytics.builder import build_analytics_views
+    from pipeline.analytics.validator import validate_analytics_datasets
+    from pipeline.analytics.report import generate_development_dataset_report
+
+    logger.info("=" * 60)
+    logger.info("BUILDING ANALYTICAL DATASETS & GUESSER READINESS LAYER")
+    logger.info("=" * 60)
+
+    views = build_analytics_views()
+    val_res = validate_analytics_datasets(views)
+    report_md = generate_development_dataset_report(views, val_res)
+
+    print("\n" + "=" * 60)
+    print("CINEMIND ANALYTICAL DATASETS & VALIDATION SUMMARY")
+    print("=" * 60)
+    for name, df in views.items():
+        print(f"  {name:<32}: {len(df):>7,} records")
+    print("-" * 60)
+    print(f"  Validation Status               : {'ALL PASSED (12/12)' if val_res['all_passed'] else 'SOME FAILED'}")
+    print("=" * 60 + "\n")
+
+
 def cmd_sample(args: argparse.Namespace) -> None:
     """Run stratified diversity sampling."""
     from pipeline.canonical.sampler import run_diversity_sampling
@@ -362,6 +386,11 @@ def build_parser() -> argparse.ArgumentParser:
         "export", help="Export candidate dataset summary",
     )
 
+    # --- analytics ---
+    subparsers.add_parser(
+        "analytics", help="Build development datasets, run validation, and generate report",
+    )
+
     return parser
 
 
@@ -382,6 +411,7 @@ def main() -> None:
         "match": cmd_match,
         "sample": cmd_sample,
         "audit": cmd_audit,
+        "analytics": cmd_analytics,
         "status": cmd_status,
         "export": cmd_export,
     }

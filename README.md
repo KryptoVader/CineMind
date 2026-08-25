@@ -112,39 +112,62 @@ python -m guesser.experiments --samples 100
 
 ---
 
-## 🧠 Guesser Machine Learning Architecture
+## 📐 Formal Mathematical Framework
+
+### 1. Popularity Log-Prior Probability Distribution
+For an entity universe $\mathcal{E} = \{e_1, e_2, \dots, e_N\}$ ($N = 461,188$), the prior probability $P(e_i)$ is defined via logarithmic normalization:
+
+$$P(e_i) = \frac{\ln\left(1 + v_i + u_i + p_i\right)}{\sum_{j=1}^{N} \ln\left(1 + v_j + u_j + p_j\right)}$$
+
+where $v_i$ is vote count, $u_i$ is user count, and $p_i$ is popularity score.
+
+### 2. Recursive Bayesian Log-Posterior Update
+Given turn history $\mathcal{H}_t = \{(q_1, a_1), \dots, (q_t, a_t)\}$, log-posterior probabilities are updated recursively:
+
+$$\ln P(e_i \mid \mathcal{H}_t) = \ln P(e_i \mid \mathcal{H}_{t-1}) + \ln P(a_t \mid e_i, q_t) - C_t$$
+
+where $C_t = \ln \sum_{j=1}^{N} \exp\left(\ln P(e_j \mid \mathcal{H}_{t-1}) + \ln P(a_t \mid e_j, q_t)\right)$.
+
+### 3. Empirical Likelihood Models $P(\text{YES} \mid e_i, q)$
+
+- **Structured Metadata Queries**:
+  $$P(\text{YES} \mid e_i, q_{\text{meta}}) = \begin{cases} \eta & \text{if } e_i \text{ satisfies } q_{\text{meta}} \\ 1 - \eta & \text{otherwise} \end{cases}$$
+  where $\eta = 0.90$ for structural attributes (media type, language, decade) and $\eta = 0.80$ for supervised genre classifications.
+
+- **TF-IDF Concept Cluster Queries**:
+  $$P(\text{YES} \mid e_i, q_{\text{concept}}) = \sigma\left(\lambda \cdot (s_i - \tau_{75})\right) = \frac{1}{1 + \exp\left(-\lambda (s_i - \tau_{75})\right)}$$
+  where $\sigma$ is the logistic sigmoid function, $\lambda = 8.0$, and $\tau_{75}$ is the 75th percentile of non-zero TF-IDF overview sums.
+
+### 4. Count-Weighted Bayesian Recalibration
+To blend synthetic priors with real user answer distributions logged to disk (`data/feedback/game_feedback_logs.parquet`):
+
+$$P_{\text{calibrated}}(\text{YES} \mid e_i, q) = \frac{k \cdot P_{\text{prior}}(\text{YES} \mid e_i, q) + n_{\text{YES}}}{k + N_{\text{obs}}}$$
+
+where $n_{\text{YES}}$ is observed affirmative count, $N_{\text{obs}}$ is total observed answers, and $k = 5.0$.
+
+### 5. Vectorized Information Gain ($IG$) Selection Criteria
+The question $q^*$ selected at turn $t+1$ maximizes expected Shannon Information Gain:
+
+$$q^* = \arg\max_{q \in \mathcal{Q}} \Big( H(E) - \left[ P(\text{YES} \mid q) H(E \mid \text{YES}, q) + P(\text{NO} \mid q) H(E \mid \text{NO}, q) \right] \Big)$$
+
+where Shannon Entropy $H(E) = -\sum_{i=1}^{N} P(e_i \mid \mathcal{H}_t) \log_2 P(e_i \mid \mathcal{H}_t)$ in bits.
+
+---
+
+## 🧠 Machine Learning & NLP Component Architecture
 
 ### 1. Supervised One-vs-Rest Genre Classifiers (`knowledge.py`)
-- **Model**: Trained 25 independent One-vs-Rest `LogisticRegression(C=2.0, class_weight='balanced')` models on TF-IDF overview features using TMDB's `genres` ground-truth labels on an **80/20 train/test split**.
-- **Disk Caching**: Models are trained once and cached to `data/models/genre_classifiers.joblib` for instant loading on subsequent runs.
-- **Evaluation Accuracy**:
-  - *Drama*: Precision 66.1% | Recall 72.9%
-  - *Action*: Precision 43.8% | Recall 75.2%
-  - *Science Fiction*: Precision 35.0% | Recall 70.6%
-- **Result**: Completely eliminates false positives (e.g. *Man of Steel* matching `Family` or `Comedy` via substring keywords).
+- **Model**: 25 independent One-vs-Rest `LogisticRegression(C=2.0, class_weight='balanced')` models trained on TF-IDF overview features on an **80/20 train/test split**.
+- **Disk Caching**: Models are cached to `data/models/genre_classifiers.joblib` for instant startup.
+- **Precision / Recall**: Drama (66.1% / 72.9%), Action (43.8% / 75.2%), Sci-Fi (35.0% / 70.6%).
 
 ### 2. NLTK POS & NER Proper-Noun Filtering (`knowledge.py`)
-- **NLTK Classical Pipeline**: Integrates `nltk.pos_tag` and `nltk.ne_chunk` into cluster vocabulary construction.
-- **Proper-Noun Exclusion**: Excludes tokens tagged `NNP`/`NNPS` or NER tags `B-PERSON`, `I-PERSON`, `B-GPE`, `B-ORGANIZATION` (*Rin, Aoi, Chicago, Danny*).
-- **Quality Gating**: Concept clusters dominated by proper nouns or lacking $\ge 2$ valid common nouns are automatically flagged `low_quality` and skipped.
+- **Classical NLTK Pipeline**: Integrates `nltk.pos_tag` and `nltk.ne_chunk` into concept cluster generation.
+- **Filtering**: Excludes proper nouns (`NNP`/`NNPS`) and named entities (`PERSON`, `GPE`, `ORGANIZATION`) to prevent unanswerable character-name questions.
 
 ### 3. Dense 100-dim SVD Entity Embeddings (`knowledge.py`, `generators.py`)
-- **LSA Embedding Matrix**: Projects the 5,000-dim TF-IDF overview space into a **100-dim dense SVD component space** (`entity_lsa_normalized`, shape: `100,000 x 100`).
-- **Semantic Contrastive Generation**: `ContrastiveGenerator` uses LSA cosine nearest-neighbors (`get_lsa_neighbors()`) to extract discriminating plot keywords between top candidate entities and their dense semantic neighbors, resolving titles with similar plot themes.
-
-### 4. Vectorized Two-Tier Information Gain ($IG$) Ranking (`engine.py`)
-- **Information Gain Formula**:
-  $$IG(q) = H(E) - \left[ P(\text{YES}) \cdot H(E \mid \text{YES}) + P(\text{NO}) \cdot H(E \mid \text{NO}) \right]$$
-- **Adaptive Tier Switching**:
-  - **Global IG**: Ranks candidate questions across all 100,000 entities during early broad search.
-  - **Local IG**: Dynamically gates onto the Top-50 candidate shortlist when entropy drops below $12.0$ bits or max candidate probability reaches $\ge 2.0\%$.
-- **Speculative Confirmation Questions**: Proposes direct confirmation questions (*"Is the movie or show you're thinking of 'X'?"*) once top candidate posterior crosses $\ge 20.0\%$.
-- **Ultra-Fast Performance**: **~12 ms per question turn** (>400× speedup via 2D matrix multiplication and hashmap pre-filtering).
-
-### 5. Persistent Feedback Recalibration Engine (`feedback.py`, `belief.py`)
-- **Game History Logging**: Logs Q/A turns, guessed entities, true target entities, and correctness after every game to `data/feedback/game_feedback_logs.parquet`.
-- **Count-Weighted Bayesian Recalibration**: Blends synthetic priors with observed user answer statistics:
-  $$p_{\text{yes}} = \frac{p_{\text{prior}} \cdot k + \text{observed\_yes}}{k + \text{observed\_total}} \quad (k = 5.0)$$
+- **LSA Embedding Matrix**: Projects 5,000-dim TF-IDF overview space into **100-dim dense SVD component space** (`entity_lsa_normalized`).
+- **Semantic Contrastive Generation**: `ContrastiveGenerator` uses LSA cosine nearest-neighbors (`get_lsa_neighbors()`) to extract discriminating keywords contrasting top candidates and their dense semantic neighbors.
 
 ---
 
@@ -161,27 +184,6 @@ CineMind includes a resilient data ingestion pipeline that harvests, normalizes,
 | **Staged MAL Normalized** | `data/staging/mal_normalized.parquet` | 23,503 | 7.84 MB |
 | **Canonical Merged Table** | `data/canonical/canonical_entities.parquet` | **461,188** | 91.90 MB |
 
-### Master Pipeline Commands
-
-Run from `src/` directory:
-
-```bash
-# Normalize and build canonical entities table
-python -m pipeline.cli process
-
-# Perform cross-source entity matching (TMDB ↔ MAL)
-python -m pipeline.cli match
-
-# Run stratified diversity sampling into diverse_100k.parquet
-python -m pipeline.cli sample
-
-# Generate master pipeline audit reports
-python -m pipeline.cli audit
-
-# Build analytics datasets & DEVELOPMENT_DATASET_REPORT.md
-python -m pipeline.cli analytics
-```
-
 ---
 
 ## ⚡ Performance Summary
@@ -195,11 +197,8 @@ python -m pipeline.cli analytics
 
 ## 🚧 Prototype Development Roadmap
 
-CineMind is an active prototype. Ongoing pipeline & feature engineering enhancements include:
-
 1. **Feature Engineering Redesign**: Rebuilding feature stores directly on top of the full **461,188 scraped data warehouse entities**.
 2. **Dedicated TMDB Keywords Fetch**: Implementing a secondary API crawler targeting `GET /movie/{id}/keywords` and `GET /tv/{id}/keywords` (currently 0% present in initial discovery dumps).
 3. **Canonical Genre Normalization**: Unifying compound genre tags (`Sci-Fi & Fantasy` $\rightarrow$ `Science Fiction`, `Fantasy`; `Action & Adventure` $\rightarrow$ `Action`, `Adventure`).
 4. **Source-Aware Percentile Prior Scaling**: Normalizing TMDB `popularity` and MAL `popularity` (rank index vs continuous score) using source-specific percentile ranks for Bayesian priors $P(e_i)$.
 5. **Anime-Specific Metadata Features**: Adding dedicated question generators for `source_material` (`manga`, `light_novel`, `original`), `studios`, and content certifications (`pg_13`, `tv_ma`).
-

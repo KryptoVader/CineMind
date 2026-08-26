@@ -228,6 +228,8 @@ class KnowledgeBase:
         # Build TF-IDF
         print("  [KnowledgeBase] Fitting TF-IDF vectorizer over overviews...")
         overviews = df["overview"].fillna("").values
+        self.has_sufficient_text = np.array([len(str(ov).split()) >= 20 for ov in overviews], dtype=bool)
+
         self.vectorizer = TfidfVectorizer(
             max_features=5000,
             min_df=5,

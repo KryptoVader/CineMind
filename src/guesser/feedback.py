@@ -104,13 +104,19 @@ class FeedbackStore:
         new_df = pd.DataFrame(records)
         if FEEDBACK_FILE.exists():
             try:
-                old_df = pd.read_parquet(FEEDBACK_FILE)
+                old_df = pd.read_parquet(FEEDBACK_FILE, engine="fastparquet")
                 combined_df = pd.concat([old_df, new_df], ignore_index=True)
-                combined_df.to_parquet(FEEDBACK_FILE, index=False)
+                combined_df.to_parquet(FEEDBACK_FILE, engine="fastparquet", index=False)
             except Exception:
-                new_df.to_parquet(FEEDBACK_FILE, index=False)
+                try:
+                    new_df.to_parquet(FEEDBACK_FILE, engine="fastparquet", index=False)
+                except Exception:
+                    pass
         else:
-            new_df.to_parquet(FEEDBACK_FILE, index=False)
+            try:
+                new_df.to_parquet(FEEDBACK_FILE, engine="fastparquet", index=False)
+            except Exception:
+                pass
 
     def recalibrate_likelihood_vector(
         self,

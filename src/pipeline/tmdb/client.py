@@ -115,6 +115,22 @@ class TMDBClient:
         return genre_map
 
     # ----------------------------------------------------------
+    # Keywords endpoints
+    # ----------------------------------------------------------
+
+    def get_movie_keywords(self, movie_id: int) -> list[str]:
+        """Fetch keywords for a movie as a list of strings."""
+        data = self.client.get(f"/movie/{movie_id}/keywords")
+        kws = data.get("keywords", [])
+        return [k["name"] for k in kws if isinstance(k, dict) and k.get("name")]
+
+    def get_tv_keywords(self, tv_id: int) -> list[str]:
+        """Fetch keywords for a TV series as a list of strings."""
+        data = self.client.get(f"/tv/{tv_id}/keywords")
+        kws = data.get("results", []) or data.get("keywords", [])
+        return [k["name"] for k in kws if isinstance(k, dict) and k.get("name")]
+
+    # ----------------------------------------------------------
     # Convenience
     # ----------------------------------------------------------
 

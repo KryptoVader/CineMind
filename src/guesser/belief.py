@@ -30,12 +30,45 @@ class BeliefTracker:
         self.kb = kb
         self.num_entities = kb.num_entities
 
-        # Compute log popularity priors P(e_i)
-        votes = kb.df["vote_count"].fillna(0).values.astype(np.float64)
-        users = kb.df["num_list_users"].fillna(0).values.astype(np.float64)
-        pops = kb.df["popularity"].fillna(0).values.astype(np.float64)
+        # Compute source-aware percentile-rank normalized popularity priors P(e_i)
+        sources = kb.df["source"].fillna("tmdb").values if "source" in kb.df.columns else np.full(self.num_entities, "tmdb")
+        is_tmdb = np.isin(sources, ["tmdb", "tmdb+mal"])
+        is_mal = np.isin(sources, ["mal", "tmdb+mal"])
 
-        raw_weights = np.log1p(votes + users + pops + 1.0)
+        tmdb_vote_pct = np.zeros(self.num_entities, dtype=np.float64)
+        tmdb_pop_pct = np.zeros(self.num_entities, dtype=np.float64)
+        mal_user_pct = np.zeros(self.num_entities, dtype=np.float64)
+
+        if np.any(is_tmdb):
+            tmdb_idx = np.where(is_tmdb)[0]
+            tmdb_votes = kb.df.loc[is_tmdb, "vote_count"].fillna(0).values
+            tmdb_pops = kb.df.loc[is_tmdb, "popularity"].fillna(0).values
+            tmdb_vote_pct[tmdb_idx] = pd.Series(tmdb_votes).rank(pct=True).values
+            tmdb_pop_pct[tmdb_idx] = pd.Series(tmdb_pops).rank(pct=True).values
+
+        if np.any(is_mal):
+            mal_idx = np.where(is_mal)[0]
+            mal_users = kb.df.loc[is_mal, "num_list_users"].fillna(0).values
+            mal_user_pct[mal_idx] = pd.Series(mal_users).rank(pct=True).values
+
+        combined_score = np.zeros(self.num_entities, dtype=np.float64)
+        for i in range(self.num_entities):
+            t_sig = 0.5 * (tmdb_vote_pct[i] + tmdb_pop_pct[i]) if is_tmdb[i] else 0.0
+            m_sig = mal_user_pct[i] if is_mal[i] else 0.0
+
+            if is_tmdb[i] and is_mal[i]:
+                if t_sig > 0 and m_sig > 0:
+                    combined_score[i] = max(t_sig, m_sig)
+                else:
+                    combined_score[i] = t_sig if t_sig > 0 else m_sig
+            elif is_tmdb[i]:
+                combined_score[i] = t_sig
+            elif is_mal[i]:
+                combined_score[i] = m_sig
+            else:
+                combined_score[i] = 0.5
+
+        raw_weights = np.log1p(10.0 * combined_score + 0.01)
         priors = raw_weights / np.sum(raw_weights)
         self.log_priors = np.log(priors + 1e-12)
 

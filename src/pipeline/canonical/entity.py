@@ -7,6 +7,7 @@ cinemind_id, tmdb_id, and mal_id fields.
 """
 
 import logging
+import numpy as np
 import pandas as pd
 
 from pipeline.config import CANONICAL_DIR, STAGING_DIR
@@ -109,9 +110,28 @@ def build_canonical_dataset() -> pd.DataFrame:
         logger.warning("Dropping %d duplicate cinemind_ids in canonical entity table", dupes)
         canonical_df = canonical_df.drop_duplicates(subset=["cinemind_id"])
 
+    # Apply Genre Taxonomy Unification
+    from pipeline.canonical.genre_map import unify_genres
+    if "genres" in canonical_df.columns:
+        canonical_df["genres"] = canonical_df["genres"].apply(unify_genres)
+
+    # Ensure list columns default to empty lists rather than NaNs
+    list_cols = ["keywords", "themes", "demographics", "relations", "alternative_titles", "production_companies", "production_countries"]
+    for col in list_cols:
+        if col in canonical_df.columns:
+            canonical_df[col] = canonical_df[col].apply(lambda v: list(v) if isinstance(v, (list, tuple, np.ndarray)) else [])
+
+    # INVARIANT ASSERTION: Row count must match expectation
+    expected_len = len(tmdb_df) + len(mal_df) - len(linked_tmdb_ids)
+    assert len(canonical_df) == expected_len, f"Canonical row count mismatch: expected {expected_len}, got {len(canonical_df)}"
+
     # Save canonical entity table and candidates parquet
-    canonical_df.to_parquet(canonical_output_path, index=False)
-    canonical_df.to_parquet(candidates_output_path, index=False)
+    try:
+        canonical_df.to_parquet(canonical_output_path, index=False)
+        canonical_df.to_parquet(candidates_output_path, index=False)
+    except Exception:
+        canonical_df.to_parquet(canonical_output_path, index=False, engine="fastparquet")
+        canonical_df.to_parquet(candidates_output_path, index=False, engine="fastparquet")
 
     logger.info(
         "Canonical Universe built: %d entities (%d TMDB-only, %d MAL-only, %d merged) → %s",

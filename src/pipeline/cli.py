@@ -307,6 +307,73 @@ def cmd_export(args: argparse.Namespace) -> None:
     print("=" * 60)
 
 
+def cmd_enrich_tmdb(args: argparse.Namespace) -> None:
+    """Run TMDB keyword enrichment crawler and merge back onto staging and canonical."""
+    from pipeline.tmdb.enricher import TMDBKeywordEnricher, merge_tmdb_keywords
+    from pipeline.canonical.entity import build_canonical_dataset
+
+    max_items = getattr(args, "max_items", None)
+    logger.info("=" * 60)
+    logger.info("TMDB KEYWORD ENRICHMENT CRAWLER (max_items: %s)", max_items or "ALL")
+    logger.info("=" * 60)
+
+    enricher = TMDBKeywordEnricher()
+    enricher.run(max_items=max_items)
+
+    logger.info("Merging enriched keywords back into tmdb_normalized.parquet...")
+    merged_tmdb = merge_tmdb_keywords()
+
+    logger.info("Rebuilding canonical dataset with enriched TMDB keywords...")
+    canonical = build_canonical_dataset()
+
+    logger.info("=" * 60)
+    logger.info("TMDB KEYWORD ENRICHMENT COMPLETE")
+    logger.info("  TMDB staging entities:  %d", len(merged_tmdb))
+    logger.info("  Canonical entities:     %d", len(canonical))
+    logger.info("=" * 60)
+
+
+def cmd_enrich_mal(args: argparse.Namespace) -> None:
+    """Run official MAL v2 theme/demographic enrichment crawler and merge back onto staging and canonical."""
+    from pipeline.mal.enricher import MALEnricher, merge_mal_enrichment
+    from pipeline.canonical.entity import build_canonical_dataset
+
+    max_items = getattr(args, "max_items", None)
+    logger.info("=" * 60)
+    logger.info("OFFICIAL MAL V2 THEME & DEMOGRAPHIC ENRICHMENT (max_items: %s)", max_items or "ALL")
+    logger.info("=" * 60)
+
+    enricher = MALEnricher()
+    enricher.run(max_items=max_items)
+
+    logger.info("Merging enriched themes/demographics back into mal_normalized.parquet...")
+    merged_mal = merge_mal_enrichment()
+
+    logger.info("Rebuilding canonical dataset with enriched MAL themes...")
+    canonical = build_canonical_dataset()
+
+    logger.info("=" * 60)
+    logger.info("MAL THEME ENRICHMENT COMPLETE")
+    logger.info("  MAL staging entities:   %d", len(merged_mal))
+    logger.info("  Canonical entities:     %d", len(canonical))
+    logger.info("=" * 60)
+
+
+def cmd_normalize_genres(args: argparse.Namespace) -> None:
+    """Rebuild canonical dataset applying genre taxonomy unification."""
+    from pipeline.canonical.entity import build_canonical_dataset
+
+    logger.info("=" * 60)
+    logger.info("GENRE TAXONOMY UNIFICATION")
+    logger.info("=" * 60)
+
+    canonical = build_canonical_dataset()
+
+    logger.info("=" * 60)
+    logger.info("GENRE TAXONOMY UNIFICATION COMPLETE: %d canonical entities", len(canonical))
+    logger.info("=" * 60)
+
+
 # =============================================================
 # Argument parser
 # =============================================================
@@ -349,6 +416,23 @@ def build_parser() -> argparse.ArgumentParser:
     all_p.add_argument(
         "--ranking-types", nargs="+",
         help="Specific ranking types for MAL (default: all)",
+    )
+
+    # --- enrich ---
+    enrich_parser = subparsers.add_parser(
+        "enrich", help="Run enrichment crawlers for keywords, themes, and demographics",
+    )
+    enrich_sub = enrich_parser.add_subparsers(dest="target")
+
+    enrich_tmdb_p = enrich_sub.add_parser("tmdb-keywords", help="TMDB keywords enrichment")
+    enrich_tmdb_p.add_argument("--max-items", type=int, help="Limit number of items to process in this run")
+
+    enrich_mal_p = enrich_sub.add_parser("mal-themes", help="MAL themes/demographics enrichment")
+    enrich_mal_p.add_argument("--max-items", type=int, help="Limit number of items to process in this run")
+
+    # --- normalize-genres ---
+    subparsers.add_parser(
+        "normalize-genres", help="Rebuild canonical dataset applying genre taxonomy unification",
     )
 
     # --- process ---
@@ -414,6 +498,7 @@ def main() -> None:
         "analytics": cmd_analytics,
         "status": cmd_status,
         "export": cmd_export,
+        "normalize-genres": cmd_normalize_genres,
     }
 
     if args.command == "discover":
@@ -432,6 +517,23 @@ def main() -> None:
         else:
             print(f"Unknown source: {args.source}")
             sys.exit(1)
+
+    elif args.command == "enrich":
+        if not hasattr(args, "target") or args.target is None:
+            parser.parse_args(["enrich", "--help"])
+            sys.exit(1)
+
+        enrich_handlers = {
+            "tmdb-keywords": cmd_enrich_tmdb,
+            "mal-themes": cmd_enrich_mal,
+        }
+        handler = enrich_handlers.get(args.target)
+        if handler:
+            handler(args)
+        else:
+            print(f"Unknown enrich target: {args.target}")
+            sys.exit(1)
+
     elif args.command in handlers:
         handlers[args.command](args)
     else:
@@ -441,3 +543,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

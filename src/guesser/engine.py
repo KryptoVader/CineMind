@@ -154,12 +154,25 @@ class CineMindGuesserEngine:
         if meta_asked < 7:
             candidate_qs.extend(self.meta_gen.generate_questions(self.asked_q_ids))
 
-        # Always include concept cluster questions
-        candidate_qs.extend(self.concept_gen.generate_questions(self.asked_q_ids))
+        top_k = self.tracker.get_top_candidates(k=5)
+        top_indices = []
+        for cand, _ in top_k:
+            cid = cand.get("cinemind_id")
+            if cid:
+                matches = self.df.index[self.df["cinemind_id"] == cid]
+                if len(matches) > 0:
+                    top_indices.append(matches[0])
 
-        # Include contrastive keyword questions as shortlist narrows or after Q5
-        top_k = self.tracker.get_top_candidates(k=2)
-        if top_k[0][1] >= 0.005 or len(self.tracker.history) >= 5:
+        # Check if top candidates predominantly have sufficient text (>= 20 words)
+        sufficient_count = sum(1 for idx in top_indices if hasattr(self.kb, "has_sufficient_text") and self.kb.has_sufficient_text[idx])
+        text_sufficient = (sufficient_count >= max(1, len(top_indices) // 2))
+
+        # Include concept cluster questions if candidates have sufficient text
+        if text_sufficient:
+            candidate_qs.extend(self.concept_gen.generate_questions(self.asked_q_ids))
+
+        # Include contrastive keyword questions as shortlist narrows or after Q5 if text is sufficient
+        if text_sufficient and (top_k[0][1] >= 0.005 or len(self.tracker.history) >= 5):
             candidate_qs.extend(self.contrast_gen.generate_questions(self.asked_q_ids, top_candidates_k=5))
 
         # Requirement 6: Speculative Early Guessing

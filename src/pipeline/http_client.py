@@ -65,9 +65,9 @@ class ResilientClient:
           - Exhausted retries
         """
         url = (
-            f"{self.base_url}/{endpoint.lstrip('/')}"
-            if self.base_url
-            else endpoint
+            endpoint
+            if endpoint.startswith("http://") or endpoint.startswith("https://")
+            else (f"{self.base_url}/{endpoint.lstrip('/')}" if self.base_url else endpoint)
         )
 
         merged_params = {**self.default_params}

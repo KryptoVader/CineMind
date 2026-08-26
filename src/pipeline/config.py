@@ -41,7 +41,7 @@ MAL_CLIENT_ID: str | None = os.getenv("MAL_CLIENT_ID")
 # API base URLs
 # ============================================================
 
-TMDB_BASE_URL = "https://api.themoviedb.org/3"
+TMDB_BASE_URL = "https://api.tmdb.org/3"
 MAL_BASE_URL = "https://api.myanimelist.net/v2"
 
 

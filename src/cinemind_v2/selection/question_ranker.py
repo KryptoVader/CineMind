@@ -1,8 +1,9 @@
 """
 CineMind V2 — Question Ranker
-Scores and ranks candidate questions using Information Gain.
+Scores and ranks candidate questions using Information Gain and optional Decision Tree signal.
 """
 
+from typing import Optional, Any, Union
 import numpy as np
 from cinemind_v2.questions.question import Question
 from cinemind_v2.knowledge.feature_store import FeatureStore
@@ -12,7 +13,8 @@ from cinemind_v2.selection.information_gain import calculate_information_gain
 
 class QuestionRanker:
     """
-    Ranks candidate questions using dynamic Information Gain calculated on the current posterior.
+    Ranks candidate questions using dynamic Information Gain calculated on the current posterior,
+    with optional Decision Tree feature importance signal.
     """
 
     def __init__(self, feature_store: FeatureStore):
@@ -24,12 +26,13 @@ class QuestionRanker:
         posterior: BayesianPosterior,
         asked_ids: set[str],
         top_n: int = 10,
-    ) -> list[tuple[Question, float]]:
+        tree_model: Optional[Any] = None,
+        use_tree_prioritization: bool = False,
+    ) -> list[tuple[Question, float, float]]:
         """
         Rank candidate questions by expected Information Gain over current posterior.
-        Returns list of (Question, ig_score) tuples sorted by IG descending.
+        Returns list of tuples: (Question, ig_score, tree_signal) sorted by selection score descending.
         """
-        # Filter out already asked questions
         candidates = [q for q in questions if q.id not in asked_ids and q.feature_id not in asked_ids]
         if not candidates:
             return []
@@ -57,10 +60,20 @@ class QuestionRanker:
             p_yes_matrix=p_yes_matrix,
         )
 
-        ranked_indices = np.argsort(ig_scores)[::-1]
+        # Calculate tree signals
+        tree_importances = tree_model.feature_importances if tree_model is not None else {}
+        tree_signals = np.array([tree_importances.get(q.feature_id, 0.0) for q in candidates], dtype=np.float64)
+
+        if use_tree_prioritization and tree_model is not None:
+            # Boost IG score using normalized tree signal
+            selection_scores = ig_scores * (1.0 + 2.0 * tree_signals)
+        else:
+            selection_scores = ig_scores
+
+        ranked_indices = np.argsort(selection_scores)[::-1]
 
         ranked_results = [
-            (candidates[idx], float(ig_scores[idx]))
+            (candidates[idx], float(ig_scores[idx]), float(tree_signals[idx]))
             for idx in ranked_indices[:top_n]
         ]
         return ranked_results

@@ -46,7 +46,7 @@ def test_v2_baseline_on_dev_dataset_1k():
         q_item = engine.get_next_question()
         if not q_item:
             break
-        q, ig_score = q_item
+        q, ig_score, *rest = q_item
         feat_val = fs.get_feature(target_id, q.feature_id)
         answer = "YES" if feat_val else "NO"
         res = engine.answer_question(q, answer, ig_score=ig_score)
@@ -90,7 +90,7 @@ def test_v2_baseline_on_dev_dataset_10k():
         q_item = engine.get_next_question()
         if not q_item:
             break
-        q, ig_score = q_item
+        q, ig_score, *rest = q_item
         feat_val = fs.get_feature(target_id, q.feature_id)
         answer = "YES" if feat_val else "NO"
         res = engine.answer_question(q, answer, ig_score=ig_score)

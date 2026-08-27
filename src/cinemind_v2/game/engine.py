@@ -19,7 +19,7 @@ class GameEngine:
     """
     CineMind V2 Game Engine.
     Coordinates knowledge representations, question generation, Information Gain selection,
-    Bayesian belief updates, and configurable game-ending stopping conditions.
+    Bayesian belief updates, optional Decision Tree signals, and configurable game-ending stopping conditions.
     """
 
     def __init__(
@@ -31,6 +31,8 @@ class GameEngine:
         target_entropy: float = 1.0,
         max_questions: int = 25,
         prior_probs: Optional[np.ndarray] = None,
+        tree_model: Optional[Any] = None,
+        use_tree_prioritization: bool = False,
     ):
         self.entity_store = entity_store
         self.feature_store = feature_store
@@ -38,6 +40,8 @@ class GameEngine:
         self.target_margin = target_margin
         self.target_entropy = target_entropy
         self.max_questions = max_questions
+        self.tree_model = tree_model
+        self.use_tree_prioritization = use_tree_prioritization
 
         # Initialize Question Generator & Library
         self.generator = QuestionGenerator(self.feature_store)
@@ -60,9 +64,9 @@ class GameEngine:
         """Start or reset game session."""
         self.state.reset()
 
-    def get_next_question(self) -> Optional[tuple[Question, float]]:
+    def get_next_question(self) -> Optional[tuple[Question, float, float]]:
         """
-        Rank unasked questions and return the top candidate question with its IG score.
+        Rank unasked questions and return top candidate question tuple: (Question, ig_score, tree_signal).
         """
         if self.state.is_over:
             return None
@@ -72,6 +76,8 @@ class GameEngine:
             posterior=self.posterior,
             asked_ids=self.state.asked_question_ids,
             top_n=1,
+            tree_model=self.tree_model,
+            use_tree_prioritization=self.use_tree_prioritization,
         )
 
         if not ranked:
@@ -79,7 +85,13 @@ class GameEngine:
 
         return ranked[0]
 
-    def answer_question(self, question: Question, answer: str, ig_score: float = 0.0) -> dict[str, Any]:
+    def answer_question(
+        self,
+        question: Question,
+        answer: str,
+        ig_score: float = 0.0,
+        tree_signal: float = 0.0,
+    ) -> dict[str, Any]:
         """
         Submit user answer ("YES", "NO", or "UNKNOWN"), update Bayesian posterior,
         check stopping condition, and return status dictionary.

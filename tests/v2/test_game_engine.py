@@ -55,13 +55,13 @@ def test_toy_deterministic_guessing_game():
     while not engine.state.is_over and turns < max_turns:
         next_q_item = engine.get_next_question()
         assert next_q_item is not None, "Engine failed to produce a question!"
-        q, ig_score = next_q_item
+        q, ig_score, tree_sig = next_q_item
 
         # Compute ground truth answer for target_id
         feat_val = fs.get_feature(target_id, q.feature_id)
         answer = "YES" if feat_val else "NO"
 
-        result = engine.answer_question(q, answer, ig_score=ig_score)
+        result = engine.answer_question(q, answer, ig_score=ig_score, tree_signal=tree_sig)
         turns += 1
 
     # Assert target entity is guessed as #1 with top confidence!

@@ -1,7 +1,7 @@
 [project]
 name = "cinemind"
 version = "0.1.0"
-description = "Add your description here"
+description = "CineMind Classical ML Guesser Engine"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -21,3 +21,8 @@ dependencies = [
     "seaborn>=0.13.2",
     "tenacity>=9.1.4",
 ]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+

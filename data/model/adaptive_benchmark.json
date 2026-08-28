@@ -1,0 +1,3581 @@
+{
+  "games_per_seed": 1000,
+  "seeds": [
+    42,
+    123,
+    999
+  ],
+  "universe_size": 10000,
+  "policies": {
+    "random": [
+      {
+        "policy_name": "Random",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 62,
+        "accuracy": 0.062,
+        "failure_rate": 0.938,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 24.871,
+          "median": 25.0,
+          "min": 9,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 443.899,
+          "median": 168.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 7904.072,
+            "median_candidates": 8331.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 6487.939,
+            "median_candidates": 7564.5,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 5456.3,
+            "median_candidates": 6257.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 4612.57,
+            "median_candidates": 4856.5,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 3991.036,
+            "median_candidates": 3845.5,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 3454.158,
+            "median_candidates": 3060.0,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 3039.01,
+            "median_candidates": 2586.5,
+            "sample_count": 1000
+          },
+          "8": {
+            "mean_candidates": 2653.956,
+            "median_candidates": 2134.5,
+            "sample_count": 1000
+          },
+          "9": {
+            "mean_candidates": 2324.838,
+            "median_candidates": 1774.5,
+            "sample_count": 1000
+          },
+          "10": {
+            "mean_candidates": 2046.5125376128385,
+            "median_candidates": 1445.0,
+            "sample_count": 997
+          },
+          "11": {
+            "mean_candidates": 1819.7432296890672,
+            "median_candidates": 1182.0,
+            "sample_count": 997
+          },
+          "12": {
+            "mean_candidates": 1644.6208625877632,
+            "median_candidates": 1062.0,
+            "sample_count": 997
+          },
+          "13": {
+            "mean_candidates": 1469.8614457831325,
+            "median_candidates": 895.0,
+            "sample_count": 996
+          },
+          "14": {
+            "mean_candidates": 1314.9155778894471,
+            "median_candidates": 791.0,
+            "sample_count": 995
+          },
+          "15": {
+            "mean_candidates": 1187.596984924623,
+            "median_candidates": 681.0,
+            "sample_count": 995
+          },
+          "16": {
+            "mean_candidates": 1080.595166163142,
+            "median_candidates": 600.0,
+            "sample_count": 993
+          },
+          "17": {
+            "mean_candidates": 974.6787512588116,
+            "median_candidates": 513.0,
+            "sample_count": 993
+          },
+          "18": {
+            "mean_candidates": 877.733870967742,
+            "median_candidates": 471.0,
+            "sample_count": 992
+          },
+          "19": {
+            "mean_candidates": 813.7691532258065,
+            "median_candidates": 408.5,
+            "sample_count": 992
+          },
+          "20": {
+            "mean_candidates": 726.3902932254803,
+            "median_candidates": 369.0,
+            "sample_count": 989
+          },
+          "21": {
+            "mean_candidates": 667.6774519716886,
+            "median_candidates": 303.0,
+            "sample_count": 989
+          },
+          "22": {
+            "mean_candidates": 599.3502024291498,
+            "median_candidates": 267.5,
+            "sample_count": 988
+          },
+          "23": {
+            "mean_candidates": 544.3586626139818,
+            "median_candidates": 238.0,
+            "sample_count": 987
+          },
+          "24": {
+            "mean_candidates": 493.1186612576065,
+            "median_candidates": 209.0,
+            "sample_count": 986
+          },
+          "25": {
+            "mean_candidates": 450.643654822335,
+            "median_candidates": 175.0,
+            "sample_count": 985
+          }
+        },
+        "family_stats": {
+          "language": {
+            "questions_used": 3462,
+            "pct_of_total": 0.1391982630372723,
+            "mean_candidate_reduction_ratio": 0.10770365013865746
+          },
+          "country": {
+            "questions_used": 2838,
+            "pct_of_total": 0.11410880141530297,
+            "mean_candidate_reduction_ratio": 0.05884051656521634
+          },
+          "genre": {
+            "questions_used": 10204,
+            "pct_of_total": 0.4102770294720759,
+            "mean_candidate_reduction_ratio": 0.07370434166548046
+          },
+          "media": {
+            "questions_used": 556,
+            "pct_of_total": 0.02235535362470347,
+            "mean_candidate_reduction_ratio": 0.1640033921584466
+          },
+          "time": {
+            "questions_used": 5212,
+            "pct_of_total": 0.20956133649632103,
+            "mean_candidate_reduction_ratio": 0.18978910337659224
+          },
+          "episodes": {
+            "questions_used": 1182,
+            "pct_of_total": 0.047525230187768885,
+            "mean_candidate_reduction_ratio": 0.01657535392317683
+          },
+          "rating": {
+            "questions_used": 591,
+            "pct_of_total": 0.023762615093884443,
+            "mean_candidate_reduction_ratio": 0.3239117238684769
+          },
+          "runtime": {
+            "questions_used": 826,
+            "pct_of_total": 0.033211370672670985,
+            "mean_candidate_reduction_ratio": 0.01856318147194344
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_111448",
+            "target_title": "Be Love",
+            "guessed_entity_id": "cinemind_mal_40833",
+            "guessed_title": "Inu to Neko Docchi mo Katteru to Mainichi Tanoshii",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 16,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_625636",
+            "target_title": "The Sacrifice of Babulal Bhuiyan",
+            "guessed_entity_id": "cinemind_tmdb_1420277",
+            "guessed_title": "Nail 2",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 34,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1046992",
+            "target_title": "\u96b1\u79d8\u5973\u4eba\u5fc3",
+            "guessed_entity_id": "cinemind_tmdb_303896",
+            "guessed_title": "Dongodi Pelli",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3141,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_100124",
+            "target_title": "The Man with the Glass Eye",
+            "guessed_entity_id": "cinemind_tmdb_160004",
+            "guessed_title": "Geometry",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 32,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_195708",
+            "target_title": "Esquimaux Village",
+            "guessed_entity_id": "cinemind_tmdb_183211",
+            "guessed_title": "The Nameless Knight",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1930,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_93925",
+            "target_title": "Napoleon in Holland",
+            "guessed_entity_id": "cinemind_tmdb_60066",
+            "guessed_title": "The Assets",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 11,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_315082",
+            "target_title": "Annie Brocoli - Info-Broc sant\u00e9",
+            "guessed_entity_id": "cinemind_tmdb_393971",
+            "guessed_title": "Aki Kaurism\u00e4ki",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 40,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_342295",
+            "target_title": "Wickie Tegen de wind in",
+            "guessed_entity_id": "cinemind_tmdb_303896",
+            "guessed_title": "Dongodi Pelli",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1473,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1145176",
+            "target_title": "Nanthanar",
+            "guessed_entity_id": "cinemind_tmdb_1026923",
+            "guessed_title": "Dalawang Anino",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1567,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_mal_45763",
+            "target_title": "Huo Xing Wa: Yewai Da Maoxian",
+            "guessed_entity_id": "cinemind_mal_4886",
+            "guessed_title": "InuYasha: Kuroi Tessaiga",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 198,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_608576",
+            "target_title": "Nenjamundu Nermaiyundu Odu Raja",
+            "guessed_entity_id": "cinemind_tmdb_70773",
+            "guessed_title": "Belle Epoque",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 877,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1519863",
+            "target_title": "Kate Wakes",
+            "guessed_entity_id": "cinemind_tmdb_11679",
+            "guessed_title": "xXx: State of the Union",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 72,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_387163",
+            "target_title": "Kleine Front",
+            "guessed_entity_id": "cinemind_tmdb_1168206",
+            "guessed_title": "Der Tod von Phaleria",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 149,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_541671",
+            "target_title": "Ballerina",
+            "guessed_entity_id": "cinemind_mal_49154",
+            "guessed_title": "High Card",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 20,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_802598",
+            "target_title": "Double Cat",
+            "guessed_entity_id": "cinemind_tmdb_274924",
+            "guessed_title": "Der Kom\u00f6dienstadel - Parapl\u00fc und Perpendikel",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 400,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1679946",
+            "target_title": "Te Invito a Jugar",
+            "guessed_entity_id": "cinemind_tmdb_773420",
+            "guessed_title": "Desert Guns",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1351,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_657979",
+            "target_title": "Jin-joo's Loss of Innocence",
+            "guessed_entity_id": "cinemind_tmdb_216677",
+            "guessed_title": "Joomoonjin",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 152,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_259494",
+            "target_title": "The Illegal",
+            "guessed_entity_id": "cinemind_tmdb_63099",
+            "guessed_title": "Kl\u00e4ger und Beklagte",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_243638",
+            "target_title": "Hi! Housemate",
+            "guessed_entity_id": "cinemind_tmdb_121762",
+            "guessed_title": "Tobot Athlon",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 28,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1228940",
+            "target_title": "Chekkan",
+            "guessed_entity_id": "cinemind_tmdb_683722",
+            "guessed_title": "Aalto",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 834,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      },
+      {
+        "policy_name": "Random",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 60,
+        "accuracy": 0.06,
+        "failure_rate": 0.94,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 24.815,
+          "median": 25.0,
+          "min": 5,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 445.338,
+          "median": 183.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 7901.943,
+            "median_candidates": 8332.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 6541.321,
+            "median_candidates": 7602.5,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 5417.545,
+            "median_candidates": 6124.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 4546.973,
+            "median_candidates": 4776.5,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 3884.643,
+            "median_candidates": 3764.5,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 3376.3406813627253,
+            "median_candidates": 2948.0,
+            "sample_count": 998
+          },
+          "7": {
+            "mean_candidates": 2955.9719438877755,
+            "median_candidates": 2548.0,
+            "sample_count": 998
+          },
+          "8": {
+            "mean_candidates": 2625.6492985971945,
+            "median_candidates": 2070.0,
+            "sample_count": 998
+          },
+          "9": {
+            "mean_candidates": 2322.119358074223,
+            "median_candidates": 1698.0,
+            "sample_count": 997
+          },
+          "10": {
+            "mean_candidates": 2056.614457831325,
+            "median_candidates": 1381.0,
+            "sample_count": 996
+          },
+          "11": {
+            "mean_candidates": 1820.2821285140562,
+            "median_candidates": 1185.0,
+            "sample_count": 996
+          },
+          "12": {
+            "mean_candidates": 1615.1306532663316,
+            "median_candidates": 969.0,
+            "sample_count": 995
+          },
+          "13": {
+            "mean_candidates": 1449.435175879397,
+            "median_candidates": 852.0,
+            "sample_count": 995
+          },
+          "14": {
+            "mean_candidates": 1321.134944612286,
+            "median_candidates": 754.0,
+            "sample_count": 993
+          },
+          "15": {
+            "mean_candidates": 1201.5126135216954,
+            "median_candidates": 674.0,
+            "sample_count": 991
+          },
+          "16": {
+            "mean_candidates": 1072.4535353535352,
+            "median_candidates": 612.5,
+            "sample_count": 990
+          },
+          "17": {
+            "mean_candidates": 968.3252525252525,
+            "median_candidates": 534.0,
+            "sample_count": 990
+          },
+          "18": {
+            "mean_candidates": 878.973710819009,
+            "median_candidates": 468.0,
+            "sample_count": 989
+          },
+          "19": {
+            "mean_candidates": 785.7745197168857,
+            "median_candidates": 420.0,
+            "sample_count": 989
+          },
+          "20": {
+            "mean_candidates": 717.0222672064777,
+            "median_candidates": 361.5,
+            "sample_count": 988
+          },
+          "21": {
+            "mean_candidates": 632.1821862348178,
+            "median_candidates": 313.5,
+            "sample_count": 988
+          },
+          "22": {
+            "mean_candidates": 585.1186612576065,
+            "median_candidates": 272.5,
+            "sample_count": 986
+          },
+          "23": {
+            "mean_candidates": 540.7599186164801,
+            "median_candidates": 249.0,
+            "sample_count": 983
+          },
+          "24": {
+            "mean_candidates": 498.7282941777324,
+            "median_candidates": 229.0,
+            "sample_count": 979
+          },
+          "25": {
+            "mean_candidates": 456.2643442622951,
+            "median_candidates": 194.5,
+            "sample_count": 976
+          }
+        },
+        "family_stats": {
+          "country": {
+            "questions_used": 2951,
+            "pct_of_total": 0.11892000805964134,
+            "mean_candidate_reduction_ratio": 0.05213384730307389
+          },
+          "language": {
+            "questions_used": 3475,
+            "pct_of_total": 0.14003626838605682,
+            "mean_candidate_reduction_ratio": 0.10944350732197217
+          },
+          "time": {
+            "questions_used": 5280,
+            "pct_of_total": 0.21277453153334677,
+            "mean_candidate_reduction_ratio": 0.1925784052379436
+          },
+          "rating": {
+            "questions_used": 562,
+            "pct_of_total": 0.022647592182147895,
+            "mean_candidate_reduction_ratio": 0.3389113020268318
+          },
+          "episodes": {
+            "questions_used": 1144,
+            "pct_of_total": 0.0461011484988918,
+            "mean_candidate_reduction_ratio": 0.013851275789784765
+          },
+          "genre": {
+            "questions_used": 9969,
+            "pct_of_total": 0.40173282288938145,
+            "mean_candidate_reduction_ratio": 0.0754158430712576
+          },
+          "media": {
+            "questions_used": 583,
+            "pct_of_total": 0.023493854523473707,
+            "mean_candidate_reduction_ratio": 0.17690547681318483
+          },
+          "runtime": {
+            "questions_used": 851,
+            "pct_of_total": 0.03429377392706025,
+            "mean_candidate_reduction_ratio": 0.011443474919317858
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_100539",
+            "target_title": "Until The Cherry Blossom Falls",
+            "guessed_entity_id": "cinemind_mal_32380",
+            "guessed_title": "Kono Subarashii Sekai ni Shukufuku wo!: Kono Subarashii Choker ni Shukufuku wo!",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 48,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_230670",
+            "target_title": "Underexposure",
+            "guessed_entity_id": "cinemind_tmdb_683722",
+            "guessed_title": "Aalto",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 355,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_307821",
+            "target_title": "Devullu",
+            "guessed_entity_id": "cinemind_tmdb_1017579",
+            "guessed_title": "Bin Maa Ke Bachche",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 99,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_103212",
+            "target_title": "Rakht",
+            "guessed_entity_id": "cinemind_tmdb_239317",
+            "guessed_title": "Dad's Dead",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 51,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1530565",
+            "target_title": "Animal Instinct",
+            "guessed_entity_id": "cinemind_tmdb_759245",
+            "guessed_title": "\u591a\u60c5\u7684\u5e3d\u5b50",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 658,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_289553",
+            "target_title": "Der Kom\u00f6dienstadel - Der Maulkorb",
+            "guessed_entity_id": "cinemind_tmdb_965440",
+            "guessed_title": "Fuck the Devil 2: Return of the Fucker",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 19,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1468057",
+            "target_title": "GATAO: Big Brothers",
+            "guessed_entity_id": "cinemind_tmdb_1096637",
+            "guessed_title": "Border",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 684,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_262730",
+            "target_title": "\u6b66\u751f\u6cf0\u6597",
+            "guessed_entity_id": "cinemind_tmdb_262730",
+            "guessed_title": "\u6b66\u751f\u6cf0\u6597",
+            "correct": true,
+            "questions_asked": 23,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_558485",
+            "target_title": "Niemandsland",
+            "guessed_entity_id": "cinemind_tmdb_70773",
+            "guessed_title": "Belle Epoque",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1582,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1753084",
+            "target_title": "A\u00efta (Le Cri)",
+            "guessed_entity_id": "cinemind_tmdb_404684",
+            "guessed_title": "The Green Music Box",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2479,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_703301",
+            "target_title": "Traces fant\u00f4mes, le mus\u00e9e d'un r\u00eave",
+            "guessed_entity_id": "cinemind_tmdb_1360943",
+            "guessed_title": "East Side Showdown",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 162,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_mal_59015",
+            "target_title": "Pororo Movie: Geugjangpan Dragon Castle Daemoheom",
+            "guessed_entity_id": "cinemind_mal_60605",
+            "guessed_title": "Hajimemashite, wo Atsumeyou.",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 5,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_245276",
+            "target_title": "Abba, Bee Gees, Carpenters",
+            "guessed_entity_id": "cinemind_tmdb_70773",
+            "guessed_title": "Belle Epoque",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 823,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_279544",
+            "target_title": "Picture Particles",
+            "guessed_entity_id": "cinemind_tmdb_51094",
+            "guessed_title": "Paris, Dabar",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 140,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_500268",
+            "target_title": "Made in Italy",
+            "guessed_entity_id": "cinemind_tmdb_1551026",
+            "guessed_title": "Entre amis",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 245,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_230670",
+            "target_title": "Underexposure",
+            "guessed_entity_id": "cinemind_tmdb_759245",
+            "guessed_title": "\u591a\u60c5\u7684\u5e3d\u5b50",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1722,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1013964",
+            "target_title": "Kulay Rosas Ang Pagibig",
+            "guessed_entity_id": "cinemind_tmdb_404684",
+            "guessed_title": "The Green Music Box",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2283,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_mal_47535",
+            "target_title": "Yu Jian Tuzki",
+            "guessed_entity_id": "cinemind_mal_32380",
+            "guessed_title": "Kono Subarashii Sekai ni Shukufuku wo!: Kono Subarashii Choker ni Shukufuku wo!",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 19,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_53219",
+            "target_title": "Mickey's Trailer",
+            "guessed_entity_id": "cinemind_tmdb_1420277",
+            "guessed_title": "Nail 2",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 160,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1020160",
+            "target_title": "Koiko no Mainichi",
+            "guessed_entity_id": "cinemind_tmdb_965837",
+            "guessed_title": "Wszystko powiem Lilce!",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 303,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      },
+      {
+        "policy_name": "Random",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 56,
+        "accuracy": 0.056,
+        "failure_rate": 0.944,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 24.902,
+          "median": 25.0,
+          "min": 6,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 472.099,
+          "median": 195.5
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 7898.11,
+            "median_candidates": 8333.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 6475.09,
+            "median_candidates": 7592.5,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 5499.119,
+            "median_candidates": 6246.5,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 4741.477,
+            "median_candidates": 5026.0,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 4106.318,
+            "median_candidates": 4078.5,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 3549.332,
+            "median_candidates": 3150.5,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 3135.3433433433433,
+            "median_candidates": 2834.0,
+            "sample_count": 999
+          },
+          "8": {
+            "mean_candidates": 2736.3343343343345,
+            "median_candidates": 2285.0,
+            "sample_count": 999
+          },
+          "9": {
+            "mean_candidates": 2419.966966966967,
+            "median_candidates": 1969.0,
+            "sample_count": 999
+          },
+          "10": {
+            "mean_candidates": 2129.871871871872,
+            "median_candidates": 1637.0,
+            "sample_count": 999
+          },
+          "11": {
+            "mean_candidates": 1877.836836836837,
+            "median_candidates": 1373.0,
+            "sample_count": 999
+          },
+          "12": {
+            "mean_candidates": 1685.2052052052052,
+            "median_candidates": 1180.0,
+            "sample_count": 999
+          },
+          "13": {
+            "mean_candidates": 1526.931931931932,
+            "median_candidates": 1006.0,
+            "sample_count": 999
+          },
+          "14": {
+            "mean_candidates": 1367.6246246246246,
+            "median_candidates": 896.0,
+            "sample_count": 999
+          },
+          "15": {
+            "mean_candidates": 1222.3827655310622,
+            "median_candidates": 789.0,
+            "sample_count": 998
+          },
+          "16": {
+            "mean_candidates": 1083.4483450351054,
+            "median_candidates": 648.0,
+            "sample_count": 997
+          },
+          "17": {
+            "mean_candidates": 960.7718592964824,
+            "median_candidates": 545.0,
+            "sample_count": 995
+          },
+          "18": {
+            "mean_candidates": 861.3762575452716,
+            "median_candidates": 471.0,
+            "sample_count": 994
+          },
+          "19": {
+            "mean_candidates": 793.3081570996978,
+            "median_candidates": 443.0,
+            "sample_count": 993
+          },
+          "20": {
+            "mean_candidates": 729.3071500503524,
+            "median_candidates": 393.0,
+            "sample_count": 993
+          },
+          "21": {
+            "mean_candidates": 671.1451612903226,
+            "median_candidates": 352.0,
+            "sample_count": 992
+          },
+          "22": {
+            "mean_candidates": 610.1223458038422,
+            "median_candidates": 304.0,
+            "sample_count": 989
+          },
+          "23": {
+            "mean_candidates": 561.6117290192113,
+            "median_candidates": 265.0,
+            "sample_count": 989
+          },
+          "24": {
+            "mean_candidates": 518.2221095334686,
+            "median_candidates": 228.5,
+            "sample_count": 986
+          },
+          "25": {
+            "mean_candidates": 479.7591463414634,
+            "median_candidates": 203.5,
+            "sample_count": 984
+          }
+        },
+        "family_stats": {
+          "genre": {
+            "questions_used": 10165,
+            "pct_of_total": 0.40820014456670145,
+            "mean_candidate_reduction_ratio": 0.07318368427294565
+          },
+          "country": {
+            "questions_used": 2908,
+            "pct_of_total": 0.11677776885390731,
+            "mean_candidate_reduction_ratio": 0.05418889743748024
+          },
+          "time": {
+            "questions_used": 5232,
+            "pct_of_total": 0.21010360613605333,
+            "mean_candidate_reduction_ratio": 0.18917003087345458
+          },
+          "language": {
+            "questions_used": 3442,
+            "pct_of_total": 0.13822182957192194,
+            "mean_candidate_reduction_ratio": 0.10588552589250383
+          },
+          "rating": {
+            "questions_used": 584,
+            "pct_of_total": 0.023451931571761304,
+            "mean_candidate_reduction_ratio": 0.31798261764638525
+          },
+          "episodes": {
+            "questions_used": 1164,
+            "pct_of_total": 0.04674323347522288,
+            "mean_candidate_reduction_ratio": 0.018629771912636883
+          },
+          "media": {
+            "questions_used": 571,
+            "pct_of_total": 0.022929885149787166,
+            "mean_candidate_reduction_ratio": 0.1766461054423038
+          },
+          "runtime": {
+            "questions_used": 836,
+            "pct_of_total": 0.033571600674644604,
+            "mean_candidate_reduction_ratio": 0.011938378772811347
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_1228435",
+            "target_title": "Book Of Knives",
+            "guessed_entity_id": "cinemind_tmdb_683722",
+            "guessed_title": "Aalto",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 4830,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_256764",
+            "target_title": "\u30cf\u30de\u306e\u5b50\u5b9d\u5148\u751f24\u6642 \u6bba\u610f\u306e\u7523\u58f0",
+            "guessed_entity_id": "cinemind_tmdb_272683",
+            "guessed_title": "Nozokiya",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 185,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1295750",
+            "target_title": "New Thursday Ghost Stories Ghost Club: Seven Wonders of School Edition 3",
+            "guessed_entity_id": "cinemind_tmdb_807688",
+            "guessed_title": "The Secret Weapon",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 31,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_918702",
+            "target_title": "Thy Will Be Done",
+            "guessed_entity_id": "cinemind_tmdb_404684",
+            "guessed_title": "The Green Music Box",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 519,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1560591",
+            "target_title": "Taiyou wo Daku Onna",
+            "guessed_entity_id": "cinemind_tmdb_404684",
+            "guessed_title": "The Green Music Box",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2297,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_754019",
+            "target_title": "Ale Alejandra",
+            "guessed_entity_id": "cinemind_tmdb_70773",
+            "guessed_title": "Belle Epoque",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1282,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_274924",
+            "target_title": "Der Kom\u00f6dienstadel - Parapl\u00fc und Perpendikel",
+            "guessed_entity_id": "cinemind_tmdb_759245",
+            "guessed_title": "\u591a\u60c5\u7684\u5e3d\u5b50",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 263,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1028485",
+            "target_title": "Neelpori Nilanjona",
+            "guessed_entity_id": "cinemind_tmdb_216677",
+            "guessed_title": "Joomoonjin",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 36,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1615767",
+            "target_title": "Fury In the Shadows",
+            "guessed_entity_id": "cinemind_tmdb_744653",
+            "guessed_title": "The Thursday Murder Club",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 16,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_321090",
+            "target_title": "On Strike",
+            "guessed_entity_id": "cinemind_tmdb_438422",
+            "guessed_title": "A Fairy Tale About A Little Thing",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 114,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1236765",
+            "target_title": "Kiseki Taiken! Anbiribab\u014d: 1999 Nostradamus Senritsu no Daiyogen Mysterious Unbelievable",
+            "guessed_entity_id": "cinemind_tmdb_807688",
+            "guessed_title": "The Secret Weapon",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 38,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_556433",
+            "target_title": "Le permis d'aimer",
+            "guessed_entity_id": "cinemind_tmdb_1473436",
+            "guessed_title": "Moonlight in the Rain",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 834,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1543713",
+            "target_title": "The Philosophers' Football Match",
+            "guessed_entity_id": "cinemind_tmdb_759245",
+            "guessed_title": "\u591a\u60c5\u7684\u5e3d\u5b50",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1282,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1407087",
+            "target_title": "The Path of Glory",
+            "guessed_entity_id": "cinemind_tmdb_84002",
+            "guessed_title": "Of Freaks and Men",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 600,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_749194",
+            "target_title": "Mists of the Past",
+            "guessed_entity_id": "cinemind_tmdb_183211",
+            "guessed_title": "The Nameless Knight",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 835,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_72325",
+            "target_title": "The Black Arrow",
+            "guessed_entity_id": "cinemind_tmdb_773420",
+            "guessed_title": "Desert Guns",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 614,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1217458",
+            "target_title": "L'Effeuilleuse",
+            "guessed_entity_id": "cinemind_tmdb_759245",
+            "guessed_title": "\u591a\u60c5\u7684\u5e3d\u5b50",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 625,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_478179",
+            "target_title": "Jules D.",
+            "guessed_entity_id": "cinemind_tmdb_1034261",
+            "guessed_title": "Agostu",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 27,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_936131",
+            "target_title": "Hardboiled",
+            "guessed_entity_id": "cinemind_tmdb_1168206",
+            "guessed_title": "Der Tod von Phaleria",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 727,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_420259",
+            "target_title": "Ederly",
+            "guessed_entity_id": "cinemind_tmdb_84002",
+            "guessed_title": "Of Freaks and Men",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 667,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      }
+    ],
+    "entropy": [
+      {
+        "policy_name": "EntropySplit",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 432,
+        "accuracy": 0.432,
+        "failure_rate": 0.568,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 21.935,
+          "median": 25.0,
+          "min": 8,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 103.892,
+          "median": 4.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 5216.6,
+            "median_candidates": 4940.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 3563.922,
+            "median_candidates": 1731.0,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 2675.383,
+            "median_candidates": 1482.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 1506.801,
+            "median_candidates": 865.0,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 1143.102,
+            "median_candidates": 531.0,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 779.395,
+            "median_candidates": 268.0,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 724.764,
+            "median_candidates": 189.0,
+            "sample_count": 1000
+          },
+          "8": {
+            "mean_candidates": 689.154,
+            "median_candidates": 138.0,
+            "sample_count": 1000
+          },
+          "9": {
+            "mean_candidates": 545.3947895791583,
+            "median_candidates": 135.0,
+            "sample_count": 998
+          },
+          "10": {
+            "mean_candidates": 400.13171225937185,
+            "median_candidates": 116.0,
+            "sample_count": 987
+          },
+          "11": {
+            "mean_candidates": 403.98858921161826,
+            "median_candidates": 95.0,
+            "sample_count": 964
+          },
+          "12": {
+            "mean_candidates": 402.259978425027,
+            "median_candidates": 110.0,
+            "sample_count": 927
+          },
+          "13": {
+            "mean_candidates": 392.14141414141415,
+            "median_candidates": 111.0,
+            "sample_count": 891
+          },
+          "14": {
+            "mean_candidates": 388.1518691588785,
+            "median_candidates": 114.0,
+            "sample_count": 856
+          },
+          "15": {
+            "mean_candidates": 288.4704463208685,
+            "median_candidates": 98.0,
+            "sample_count": 829
+          },
+          "16": {
+            "mean_candidates": 234.845869297164,
+            "median_candidates": 58.0,
+            "sample_count": 811
+          },
+          "17": {
+            "mean_candidates": 214.77847309136422,
+            "median_candidates": 44.0,
+            "sample_count": 799
+          },
+          "18": {
+            "mean_candidates": 201.41878172588832,
+            "median_candidates": 31.5,
+            "sample_count": 788
+          },
+          "19": {
+            "mean_candidates": 196.4124513618677,
+            "median_candidates": 24.0,
+            "sample_count": 771
+          },
+          "20": {
+            "mean_candidates": 163.18947368421053,
+            "median_candidates": 19.5,
+            "sample_count": 760
+          },
+          "21": {
+            "mean_candidates": 159.5261744966443,
+            "median_candidates": 17.0,
+            "sample_count": 745
+          },
+          "22": {
+            "mean_candidates": 151.71506849315068,
+            "median_candidates": 14.0,
+            "sample_count": 730
+          },
+          "23": {
+            "mean_candidates": 151.57223001402525,
+            "median_candidates": 12.0,
+            "sample_count": 713
+          },
+          "24": {
+            "mean_candidates": 151.32467532467533,
+            "median_candidates": 11.0,
+            "sample_count": 693
+          },
+          "25": {
+            "mean_candidates": 153.88558692421992,
+            "median_candidates": 11.0,
+            "sample_count": 673
+          }
+        },
+        "family_stats": {
+          "genre": {
+            "questions_used": 6856,
+            "pct_of_total": 0.3125598358787326,
+            "mean_candidate_reduction_ratio": 0.23039672713772053
+          },
+          "time": {
+            "questions_used": 3654,
+            "pct_of_total": 0.16658308639161157,
+            "mean_candidate_reduction_ratio": 0.3990509549307455
+          },
+          "country": {
+            "questions_used": 3561,
+            "pct_of_total": 0.16234328698427172,
+            "mean_candidate_reduction_ratio": 0.048672544793635995
+          },
+          "rating": {
+            "questions_used": 1287,
+            "pct_of_total": 0.058673353088671075,
+            "mean_candidate_reduction_ratio": 0.43101929563678487
+          },
+          "language": {
+            "questions_used": 5390,
+            "pct_of_total": 0.2457260086619558,
+            "mean_candidate_reduction_ratio": 0.15208658637116668
+          },
+          "media": {
+            "questions_used": 1038,
+            "pct_of_total": 0.04732163209482562,
+            "mean_candidate_reduction_ratio": 0.135941013258304
+          },
+          "episodes": {
+            "questions_used": 104,
+            "pct_of_total": 0.00474128105767039,
+            "mean_candidate_reduction_ratio": 0.30366872109356824
+          },
+          "runtime": {
+            "questions_used": 45,
+            "pct_of_total": 0.0020515158422612263,
+            "mean_candidate_reduction_ratio": 0.10326389296977531
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_625636",
+            "target_title": "The Sacrifice of Babulal Bhuiyan",
+            "guessed_entity_id": "cinemind_tmdb_1028250",
+            "guessed_title": "Meters of Life",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 4,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1046992",
+            "target_title": "\u96b1\u79d8\u5973\u4eba\u5fc3",
+            "guessed_entity_id": "cinemind_tmdb_303896",
+            "guessed_title": "Dongodi Pelli",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1053,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_195708",
+            "target_title": "Esquimaux Village",
+            "guessed_entity_id": "cinemind_tmdb_195708",
+            "guessed_title": "Esquimaux Village",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 11,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_315082",
+            "target_title": "Annie Brocoli - Info-Broc sant\u00e9",
+            "guessed_entity_id": "cinemind_tmdb_315082",
+            "guessed_title": "Annie Brocoli - Info-Broc sant\u00e9",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_342295",
+            "target_title": "Wickie Tegen de wind in",
+            "guessed_entity_id": "cinemind_tmdb_795007",
+            "guessed_title": "the lost time (still running)",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 909,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1145176",
+            "target_title": "Nanthanar",
+            "guessed_entity_id": "cinemind_tmdb_404684",
+            "guessed_title": "The Green Music Box",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 868,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_mal_45763",
+            "target_title": "Huo Xing Wa: Yewai Da Maoxian",
+            "guessed_entity_id": "cinemind_mal_45290",
+            "guessed_title": "Xing Mao de Mimi Jidi",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 7,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_608576",
+            "target_title": "Nenjamundu Nermaiyundu Odu Raja",
+            "guessed_entity_id": "cinemind_tmdb_608576",
+            "guessed_title": "Nenjamundu Nermaiyundu Odu Raja",
+            "correct": true,
+            "questions_asked": 24,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1519863",
+            "target_title": "Kate Wakes",
+            "guessed_entity_id": "cinemind_tmdb_303896",
+            "guessed_title": "Dongodi Pelli",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1053,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_387163",
+            "target_title": "Kleine Front",
+            "guessed_entity_id": "cinemind_tmdb_520225",
+            "guessed_title": "Don Juan in der M\u00e4dchenschule",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 18,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_541671",
+            "target_title": "Ballerina",
+            "guessed_entity_id": "cinemind_tmdb_541671",
+            "guessed_title": "Ballerina",
+            "correct": true,
+            "questions_asked": 23,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_802598",
+            "target_title": "Double Cat",
+            "guessed_entity_id": "cinemind_tmdb_274924",
+            "guessed_title": "Der Kom\u00f6dienstadel - Parapl\u00fc und Perpendikel",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 192,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1679946",
+            "target_title": "Te Invito a Jugar",
+            "guessed_entity_id": "cinemind_tmdb_472211",
+            "guessed_title": "Raza, el esp\u00edritu de Franco",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 17,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_657979",
+            "target_title": "Jin-joo's Loss of Innocence",
+            "guessed_entity_id": "cinemind_tmdb_702356",
+            "guessed_title": "An Affair: Young Stepmother",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_259494",
+            "target_title": "The Illegal",
+            "guessed_entity_id": "cinemind_tmdb_63099",
+            "guessed_title": "Kl\u00e4ger und Beklagte",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_243638",
+            "target_title": "Hi! Housemate",
+            "guessed_entity_id": "cinemind_tmdb_243638",
+            "guessed_title": "Hi! Housemate",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1228940",
+            "target_title": "Chekkan",
+            "guessed_entity_id": "cinemind_tmdb_1111626",
+            "guessed_title": "Trapezoid",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 156,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1135604",
+            "target_title": "When the Beat Drops",
+            "guessed_entity_id": "cinemind_tmdb_1096637",
+            "guessed_title": "Border",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1032,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1091323",
+            "target_title": "Chiemgauer Volkstheater - Weil mir zwoa Spezi san",
+            "guessed_entity_id": "cinemind_tmdb_1089901",
+            "guessed_title": "Chiemgauer Volkstheater - Brunos Bruder",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1442908",
+            "target_title": "The Singers",
+            "guessed_entity_id": "cinemind_tmdb_739993",
+            "guessed_title": "Metal Lords",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      },
+      {
+        "policy_name": "EntropySplit",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 415,
+        "accuracy": 0.415,
+        "failure_rate": 0.585,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 22.181,
+          "median": 25.0,
+          "min": 8,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 117.015,
+          "median": 4.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 5298.1,
+            "median_candidates": 4940.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 3675.859,
+            "median_candidates": 3360.0,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 2777.009,
+            "median_candidates": 1482.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 1550.569,
+            "median_candidates": 1013.0,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 1206.515,
+            "median_candidates": 531.0,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 855.844,
+            "median_candidates": 312.0,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 803.079,
+            "median_candidates": 219.0,
+            "sample_count": 1000
+          },
+          "8": {
+            "mean_candidates": 769.102,
+            "median_candidates": 163.0,
+            "sample_count": 1000
+          },
+          "9": {
+            "mean_candidates": 595.2142142142142,
+            "median_candidates": 139.0,
+            "sample_count": 999
+          },
+          "10": {
+            "mean_candidates": 432.7883064516129,
+            "median_candidates": 127.0,
+            "sample_count": 992
+          },
+          "11": {
+            "mean_candidates": 440.7139896373057,
+            "median_candidates": 127.0,
+            "sample_count": 965
+          },
+          "12": {
+            "mean_candidates": 427.94973262032084,
+            "median_candidates": 135.0,
+            "sample_count": 935
+          },
+          "13": {
+            "mean_candidates": 415.15836101882616,
+            "median_candidates": 140.0,
+            "sample_count": 903
+          },
+          "14": {
+            "mean_candidates": 407.56427758816835,
+            "median_candidates": 102.0,
+            "sample_count": 879
+          },
+          "15": {
+            "mean_candidates": 304.6830409356725,
+            "median_candidates": 85.0,
+            "sample_count": 855
+          },
+          "16": {
+            "mean_candidates": 249.29016786570745,
+            "median_candidates": 58.5,
+            "sample_count": 834
+          },
+          "17": {
+            "mean_candidates": 230.43031784841077,
+            "median_candidates": 44.0,
+            "sample_count": 818
+          },
+          "18": {
+            "mean_candidates": 217.90886392009986,
+            "median_candidates": 32.0,
+            "sample_count": 801
+          },
+          "19": {
+            "mean_candidates": 214.1095541401274,
+            "median_candidates": 25.0,
+            "sample_count": 785
+          },
+          "20": {
+            "mean_candidates": 174.8152454780362,
+            "median_candidates": 20.0,
+            "sample_count": 774
+          },
+          "21": {
+            "mean_candidates": 171.46395806028835,
+            "median_candidates": 17.0,
+            "sample_count": 763
+          },
+          "22": {
+            "mean_candidates": 163.97329773030708,
+            "median_candidates": 13.0,
+            "sample_count": 749
+          },
+          "23": {
+            "mean_candidates": 164.85714285714286,
+            "median_candidates": 11.0,
+            "sample_count": 728
+          },
+          "24": {
+            "mean_candidates": 166.34322033898306,
+            "median_candidates": 10.0,
+            "sample_count": 708
+          },
+          "25": {
+            "mean_candidates": 168.40981240981242,
+            "median_candidates": 10.0,
+            "sample_count": 693
+          }
+        },
+        "family_stats": {
+          "genre": {
+            "questions_used": 6992,
+            "pct_of_total": 0.31522474189621746,
+            "mean_candidate_reduction_ratio": 0.22456618386765184
+          },
+          "time": {
+            "questions_used": 3573,
+            "pct_of_total": 0.1610838104684189,
+            "mean_candidate_reduction_ratio": 0.41257648226657795
+          },
+          "country": {
+            "questions_used": 3845,
+            "pct_of_total": 0.17334655786483927,
+            "mean_candidate_reduction_ratio": 0.04207114347411672
+          },
+          "rating": {
+            "questions_used": 1247,
+            "pct_of_total": 0.05621928677697128,
+            "mean_candidate_reduction_ratio": 0.4312596081743073
+          },
+          "language": {
+            "questions_used": 5269,
+            "pct_of_total": 0.23754564717551058,
+            "mean_candidate_reduction_ratio": 0.1540556153104707
+          },
+          "media": {
+            "questions_used": 1055,
+            "pct_of_total": 0.04756322979126279,
+            "mean_candidate_reduction_ratio": 0.1509550995284163
+          },
+          "episodes": {
+            "questions_used": 138,
+            "pct_of_total": 0.006221540958477977,
+            "mean_candidate_reduction_ratio": 0.18018215766210222
+          },
+          "runtime": {
+            "questions_used": 62,
+            "pct_of_total": 0.0027951850683016997,
+            "mean_candidate_reduction_ratio": 0.03137706695581458
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_230670",
+            "target_title": "Underexposure",
+            "guessed_entity_id": "cinemind_tmdb_230670",
+            "guessed_title": "Underexposure",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 6,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_103212",
+            "target_title": "Rakht",
+            "guessed_entity_id": "cinemind_tmdb_103212",
+            "guessed_title": "Rakht",
+            "correct": true,
+            "questions_asked": 24,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1530565",
+            "target_title": "Animal Instinct",
+            "guessed_entity_id": "cinemind_tmdb_1530560",
+            "guessed_title": "O M\u00fasico e o Cavalo",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_289553",
+            "target_title": "Der Kom\u00f6dienstadel - Der Maulkorb",
+            "guessed_entity_id": "cinemind_tmdb_289553",
+            "guessed_title": "Der Kom\u00f6dienstadel - Der Maulkorb",
+            "correct": true,
+            "questions_asked": 24,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1468057",
+            "target_title": "GATAO: Big Brothers",
+            "guessed_entity_id": "cinemind_tmdb_1404320",
+            "guessed_title": "Wild Agent 2: Peach Assassination",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_558485",
+            "target_title": "Niemandsland",
+            "guessed_entity_id": "cinemind_tmdb_795007",
+            "guessed_title": "the lost time (still running)",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 909,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1753084",
+            "target_title": "A\u00efta (Le Cri)",
+            "guessed_entity_id": "cinemind_tmdb_759245",
+            "guessed_title": "\u591a\u60c5\u7684\u5e3d\u5b50",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 631,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_703301",
+            "target_title": "Traces fant\u00f4mes, le mus\u00e9e d'un r\u00eave",
+            "guessed_entity_id": "cinemind_tmdb_243468",
+            "guessed_title": "The World According to Tippi",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 6,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_245276",
+            "target_title": "Abba, Bee Gees, Carpenters",
+            "guessed_entity_id": "cinemind_tmdb_213552",
+            "guessed_title": "Mia, Liebe meines Lebens",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 38,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_279544",
+            "target_title": "Picture Particles",
+            "guessed_entity_id": "cinemind_tmdb_279544",
+            "guessed_title": "Picture Particles",
+            "correct": true,
+            "questions_asked": 23,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_500268",
+            "target_title": "Made in Italy",
+            "guessed_entity_id": "cinemind_tmdb_500268",
+            "guessed_title": "Made in Italy",
+            "correct": true,
+            "questions_asked": 20,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_230670",
+            "target_title": "Underexposure",
+            "guessed_entity_id": "cinemind_tmdb_230670",
+            "guessed_title": "Underexposure",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 6,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1013964",
+            "target_title": "Kulay Rosas Ang Pagibig",
+            "guessed_entity_id": "cinemind_tmdb_1013964",
+            "guessed_title": "Kulay Rosas Ang Pagibig",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_mal_47535",
+            "target_title": "Yu Jian Tuzki",
+            "guessed_entity_id": "cinemind_mal_47452",
+            "guessed_title": "Kan Ge Qiu",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_53219",
+            "target_title": "Mickey's Trailer",
+            "guessed_entity_id": "cinemind_tmdb_235846",
+            "guessed_title": "Heir Bear",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1244905",
+            "target_title": "Vipra Narayana",
+            "guessed_entity_id": "cinemind_tmdb_1244905",
+            "guessed_title": "Vipra Narayana",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1362512",
+            "target_title": "La sombra",
+            "guessed_entity_id": "cinemind_tmdb_1096637",
+            "guessed_title": "Border",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 1032,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_532451",
+            "target_title": "Le fabuleux destin de Perrine Martin",
+            "guessed_entity_id": "cinemind_tmdb_532451",
+            "guessed_title": "Le fabuleux destin de Perrine Martin",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1145071",
+            "target_title": "Alberto Grifi a Visioni Sconsigliate",
+            "guessed_entity_id": "cinemind_tmdb_1717201",
+            "guessed_title": "Ari & Me",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_882420",
+            "target_title": "Idhe Maa Katha",
+            "guessed_entity_id": "cinemind_tmdb_1111626",
+            "guessed_title": "Trapezoid",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 156,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      },
+      {
+        "policy_name": "EntropySplit",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 419,
+        "accuracy": 0.419,
+        "failure_rate": 0.581,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 22.054,
+          "median": 25.0,
+          "min": 7,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 108.352,
+          "median": 4.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 5315.32,
+            "median_candidates": 4940.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 3685.815,
+            "median_candidates": 3360.0,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 2792.661,
+            "median_candidates": 1482.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 1567.425,
+            "median_candidates": 1013.0,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 1194.627,
+            "median_candidates": 531.0,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 824.049,
+            "median_candidates": 312.0,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 768.662,
+            "median_candidates": 219.0,
+            "sample_count": 1000
+          },
+          "8": {
+            "mean_candidates": 733.3903903903904,
+            "median_candidates": 140.0,
+            "sample_count": 999
+          },
+          "9": {
+            "mean_candidates": 576.1553106212425,
+            "median_candidates": 135.0,
+            "sample_count": 998
+          },
+          "10": {
+            "mean_candidates": 423.6325910931174,
+            "median_candidates": 127.0,
+            "sample_count": 988
+          },
+          "11": {
+            "mean_candidates": 428.7502590673575,
+            "median_candidates": 127.0,
+            "sample_count": 965
+          },
+          "12": {
+            "mean_candidates": 419.7234726688103,
+            "median_candidates": 135.0,
+            "sample_count": 933
+          },
+          "13": {
+            "mean_candidates": 405.3241150442478,
+            "median_candidates": 140.0,
+            "sample_count": 904
+          },
+          "14": {
+            "mean_candidates": 399.78868360277136,
+            "median_candidates": 114.0,
+            "sample_count": 866
+          },
+          "15": {
+            "mean_candidates": 299.30035756853397,
+            "median_candidates": 98.0,
+            "sample_count": 839
+          },
+          "16": {
+            "mean_candidates": 248.6621951219512,
+            "median_candidates": 61.0,
+            "sample_count": 820
+          },
+          "17": {
+            "mean_candidates": 231.78304239401496,
+            "median_candidates": 44.0,
+            "sample_count": 802
+          },
+          "18": {
+            "mean_candidates": 219.4300254452926,
+            "median_candidates": 30.0,
+            "sample_count": 786
+          },
+          "19": {
+            "mean_candidates": 213.91119691119692,
+            "median_candidates": 24.0,
+            "sample_count": 777
+          },
+          "20": {
+            "mean_candidates": 173.9400260756193,
+            "median_candidates": 18.0,
+            "sample_count": 767
+          },
+          "21": {
+            "mean_candidates": 171.24403183023873,
+            "median_candidates": 16.0,
+            "sample_count": 754
+          },
+          "22": {
+            "mean_candidates": 157.74628879892038,
+            "median_candidates": 13.0,
+            "sample_count": 741
+          },
+          "23": {
+            "mean_candidates": 157.15469613259668,
+            "median_candidates": 11.0,
+            "sample_count": 724
+          },
+          "24": {
+            "mean_candidates": 154.9943342776204,
+            "median_candidates": 10.0,
+            "sample_count": 706
+          },
+          "25": {
+            "mean_candidates": 157.71824817518248,
+            "median_candidates": 10.0,
+            "sample_count": 685
+          }
+        },
+        "family_stats": {
+          "genre": {
+            "questions_used": 6931,
+            "pct_of_total": 0.31427405459327107,
+            "mean_candidate_reduction_ratio": 0.22393136423056317
+          },
+          "rating": {
+            "questions_used": 1269,
+            "pct_of_total": 0.05754058220730933,
+            "mean_candidate_reduction_ratio": 0.42814987612292843
+          },
+          "time": {
+            "questions_used": 3665,
+            "pct_of_total": 0.16618300535050332,
+            "mean_candidate_reduction_ratio": 0.40849463131136293
+          },
+          "country": {
+            "questions_used": 3657,
+            "pct_of_total": 0.1658202593633808,
+            "mean_candidate_reduction_ratio": 0.04735914340829225
+          },
+          "language": {
+            "questions_used": 5349,
+            "pct_of_total": 0.24254103563979323,
+            "mean_candidate_reduction_ratio": 0.15491780692350174
+          },
+          "episodes": {
+            "questions_used": 110,
+            "pct_of_total": 0.0049877573229346155,
+            "mean_candidate_reduction_ratio": 0.25811375960650107
+          },
+          "runtime": {
+            "questions_used": 44,
+            "pct_of_total": 0.001995102929173846,
+            "mean_candidate_reduction_ratio": 0.07729085753818375
+          },
+          "media": {
+            "questions_used": 1029,
+            "pct_of_total": 0.046658202593633805,
+            "mean_candidate_reduction_ratio": 0.1374714777798057
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_1228435",
+            "target_title": "Book Of Knives",
+            "guessed_entity_id": "cinemind_tmdb_130908",
+            "guessed_title": "Lost Worlds: The Story of Archaeology",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 38,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_256764",
+            "target_title": "\u30cf\u30de\u306e\u5b50\u5b9d\u5148\u751f24\u6642 \u6bba\u610f\u306e\u7523\u58f0",
+            "guessed_entity_id": "cinemind_tmdb_272683",
+            "guessed_title": "Nozokiya",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 52,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1295750",
+            "target_title": "New Thursday Ghost Stories Ghost Club: Seven Wonders of School Edition 3",
+            "guessed_entity_id": "cinemind_tmdb_485168",
+            "guessed_title": "Shin Killer Crocodile: Akai kiba",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 5,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_918702",
+            "target_title": "Thy Will Be Done",
+            "guessed_entity_id": "cinemind_tmdb_1125177",
+            "guessed_title": "The Understudy",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 40,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1560591",
+            "target_title": "Taiyou wo Daku Onna",
+            "guessed_entity_id": "cinemind_tmdb_404684",
+            "guessed_title": "The Green Music Box",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 868,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_754019",
+            "target_title": "Ale Alejandra",
+            "guessed_entity_id": "cinemind_tmdb_795007",
+            "guessed_title": "the lost time (still running)",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 909,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_274924",
+            "target_title": "Der Kom\u00f6dienstadel - Parapl\u00fc und Perpendikel",
+            "guessed_entity_id": "cinemind_tmdb_274924",
+            "guessed_title": "Der Kom\u00f6dienstadel - Parapl\u00fc und Perpendikel",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 4,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1028485",
+            "target_title": "Neelpori Nilanjona",
+            "guessed_entity_id": "cinemind_tmdb_1328386",
+            "guessed_title": "Hoppet",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 10,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1615767",
+            "target_title": "Fury In the Shadows",
+            "guessed_entity_id": "cinemind_tmdb_1615767",
+            "guessed_title": "Fury In the Shadows",
+            "correct": true,
+            "questions_asked": 24,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_321090",
+            "target_title": "On Strike",
+            "guessed_entity_id": "cinemind_tmdb_86753",
+            "guessed_title": "Out-Foxed",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 10,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1236765",
+            "target_title": "Kiseki Taiken! Anbiribab\u014d: 1999 Nostradamus Senritsu no Daiyogen Mysterious Unbelievable",
+            "guessed_entity_id": "cinemind_tmdb_1381688",
+            "guessed_title": "Kwaidan",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_556433",
+            "target_title": "Le permis d'aimer",
+            "guessed_entity_id": "cinemind_tmdb_1473436",
+            "guessed_title": "Moonlight in the Rain",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 320,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1407087",
+            "target_title": "The Path of Glory",
+            "guessed_entity_id": "cinemind_tmdb_84002",
+            "guessed_title": "Of Freaks and Men",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 671,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_749194",
+            "target_title": "Mists of the Past",
+            "guessed_entity_id": "cinemind_tmdb_930599",
+            "guessed_title": "Leke",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 38,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1217458",
+            "target_title": "L'Effeuilleuse",
+            "guessed_entity_id": "cinemind_tmdb_759245",
+            "guessed_title": "\u591a\u60c5\u7684\u5e3d\u5b50",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 631,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_478179",
+            "target_title": "Jules D.",
+            "guessed_entity_id": "cinemind_tmdb_478179",
+            "guessed_title": "Jules D.",
+            "correct": true,
+            "questions_asked": 24,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_936131",
+            "target_title": "Hardboiled",
+            "guessed_entity_id": "cinemind_tmdb_1125177",
+            "guessed_title": "The Understudy",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 40,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_420259",
+            "target_title": "Ederly",
+            "guessed_entity_id": "cinemind_tmdb_1393149",
+            "guessed_title": "Manja",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 19,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_264034",
+            "target_title": "Thirudan Police",
+            "guessed_entity_id": "cinemind_tmdb_465099",
+            "guessed_title": "Ninnu Kori",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1123485",
+            "target_title": "Piotr Micha\u0142owski",
+            "guessed_entity_id": "cinemind_tmdb_1123485",
+            "guessed_title": "Piotr Micha\u0142owski",
+            "correct": true,
+            "questions_asked": 23,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      }
+    ],
+    "expected_reduction": [
+      {
+        "policy_name": "ExpectedReduction",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 489,
+        "accuracy": 0.489,
+        "failure_rate": 0.511,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 20.805,
+          "median": 25.0,
+          "min": 9,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 48.154,
+          "median": 3.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 5013.244,
+            "median_candidates": 5134.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 2583.615,
+            "median_candidates": 2763.0,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 1333.601,
+            "median_candidates": 1195.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 716.3,
+            "median_candidates": 590.0,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 398.896,
+            "median_candidates": 318.0,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 280.273,
+            "median_candidates": 188.5,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 211.083,
+            "median_candidates": 121.0,
+            "sample_count": 1000
+          },
+          "8": {
+            "mean_candidates": 159.847,
+            "median_candidates": 69.0,
+            "sample_count": 1000
+          },
+          "9": {
+            "mean_candidates": 132.875,
+            "median_candidates": 42.0,
+            "sample_count": 1000
+          },
+          "10": {
+            "mean_candidates": 114.06024096385542,
+            "median_candidates": 28.5,
+            "sample_count": 996
+          },
+          "11": {
+            "mean_candidates": 97.01840490797547,
+            "median_candidates": 19.0,
+            "sample_count": 978
+          },
+          "12": {
+            "mean_candidates": 93.99029126213593,
+            "median_candidates": 15.0,
+            "sample_count": 927
+          },
+          "13": {
+            "mean_candidates": 92.08996539792388,
+            "median_candidates": 13.0,
+            "sample_count": 867
+          },
+          "14": {
+            "mean_candidates": 93.92555831265508,
+            "median_candidates": 11.0,
+            "sample_count": 806
+          },
+          "15": {
+            "mean_candidates": 93.78457446808511,
+            "median_candidates": 11.0,
+            "sample_count": 752
+          },
+          "16": {
+            "mean_candidates": 95.92857142857143,
+            "median_candidates": 11.0,
+            "sample_count": 714
+          },
+          "17": {
+            "mean_candidates": 96.47467438494935,
+            "median_candidates": 10.0,
+            "sample_count": 691
+          },
+          "18": {
+            "mean_candidates": 98.17937219730942,
+            "median_candidates": 10.0,
+            "sample_count": 669
+          },
+          "19": {
+            "mean_candidates": 100.16846986089645,
+            "median_candidates": 10.0,
+            "sample_count": 647
+          },
+          "20": {
+            "mean_candidates": 99.7953125,
+            "median_candidates": 10.0,
+            "sample_count": 640
+          },
+          "21": {
+            "mean_candidates": 97.68976377952755,
+            "median_candidates": 10.0,
+            "sample_count": 635
+          },
+          "22": {
+            "mean_candidates": 93.90255591054313,
+            "median_candidates": 9.0,
+            "sample_count": 626
+          },
+          "23": {
+            "mean_candidates": 89.47833065810593,
+            "median_candidates": 9.0,
+            "sample_count": 623
+          },
+          "24": {
+            "mean_candidates": 85.70873786407768,
+            "median_candidates": 9.0,
+            "sample_count": 618
+          },
+          "25": {
+            "mean_candidates": 77.5487012987013,
+            "median_candidates": 9.0,
+            "sample_count": 616
+          }
+        },
+        "family_stats": {
+          "time": {
+            "questions_used": 4074,
+            "pct_of_total": 0.19581831290555154,
+            "mean_candidate_reduction_ratio": 0.3758984703574098
+          },
+          "genre": {
+            "questions_used": 6973,
+            "pct_of_total": 0.33515981735159817,
+            "mean_candidate_reduction_ratio": 0.23490065159250026
+          },
+          "media": {
+            "questions_used": 1329,
+            "pct_of_total": 0.0638788752703677,
+            "mean_candidate_reduction_ratio": 0.2277300558960947
+          },
+          "rating": {
+            "questions_used": 1249,
+            "pct_of_total": 0.0600336457582312,
+            "mean_candidate_reduction_ratio": 0.42810071424910545
+          },
+          "language": {
+            "questions_used": 6999,
+            "pct_of_total": 0.33640951694304255,
+            "mean_candidate_reduction_ratio": 0.14512000840604586
+          },
+          "episodes": {
+            "questions_used": 52,
+            "pct_of_total": 0.0024993991828887287,
+            "mean_candidate_reduction_ratio": 0.44835015666289524
+          },
+          "country": {
+            "questions_used": 120,
+            "pct_of_total": 0.005767844268204758,
+            "mean_candidate_reduction_ratio": 0.2665619688614858
+          },
+          "runtime": {
+            "questions_used": 9,
+            "pct_of_total": 0.0004325883201153569,
+            "mean_candidate_reduction_ratio": 0.5763532763532765
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_625636",
+            "target_title": "The Sacrifice of Babulal Bhuiyan",
+            "guessed_entity_id": "cinemind_tmdb_1028250",
+            "guessed_title": "Meters of Life",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 4,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1046992",
+            "target_title": "\u96b1\u79d8\u5973\u4eba\u5fc3",
+            "guessed_entity_id": "cinemind_tmdb_303896",
+            "guessed_title": "Dongodi Pelli",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 730,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_195708",
+            "target_title": "Esquimaux Village",
+            "guessed_entity_id": "cinemind_tmdb_195708",
+            "guessed_title": "Esquimaux Village",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 11,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_342295",
+            "target_title": "Wickie Tegen de wind in",
+            "guessed_entity_id": "cinemind_tmdb_795007",
+            "guessed_title": "the lost time (still running)",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 702,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1145176",
+            "target_title": "Nanthanar",
+            "guessed_entity_id": "cinemind_tmdb_1026923",
+            "guessed_title": "Dalawang Anino",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 228,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_mal_45763",
+            "target_title": "Huo Xing Wa: Yewai Da Maoxian",
+            "guessed_entity_id": "cinemind_mal_45290",
+            "guessed_title": "Xing Mao de Mimi Jidi",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 6,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1519863",
+            "target_title": "Kate Wakes",
+            "guessed_entity_id": "cinemind_tmdb_303896",
+            "guessed_title": "Dongodi Pelli",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 730,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_387163",
+            "target_title": "Kleine Front",
+            "guessed_entity_id": "cinemind_tmdb_520225",
+            "guessed_title": "Don Juan in der M\u00e4dchenschule",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 18,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_802598",
+            "target_title": "Double Cat",
+            "guessed_entity_id": "cinemind_tmdb_1420277",
+            "guessed_title": "Nail 2",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 109,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1679946",
+            "target_title": "Te Invito a Jugar",
+            "guessed_entity_id": "cinemind_tmdb_472211",
+            "guessed_title": "Raza, el esp\u00edritu de Franco",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 17,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_657979",
+            "target_title": "Jin-joo's Loss of Innocence",
+            "guessed_entity_id": "cinemind_tmdb_702356",
+            "guessed_title": "An Affair: Young Stepmother",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_259494",
+            "target_title": "The Illegal",
+            "guessed_entity_id": "cinemind_tmdb_63099",
+            "guessed_title": "Kl\u00e4ger und Beklagte",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_243638",
+            "target_title": "Hi! Housemate",
+            "guessed_entity_id": "cinemind_tmdb_243638",
+            "guessed_title": "Hi! Housemate",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1228940",
+            "target_title": "Chekkan",
+            "guessed_entity_id": "cinemind_tmdb_1729887",
+            "guessed_title": "Very sorry for condolence",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 5,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1135604",
+            "target_title": "When the Beat Drops",
+            "guessed_entity_id": "cinemind_tmdb_1096637",
+            "guessed_title": "Border",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 800,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1091323",
+            "target_title": "Chiemgauer Volkstheater - Weil mir zwoa Spezi san",
+            "guessed_entity_id": "cinemind_tmdb_1089901",
+            "guessed_title": "Chiemgauer Volkstheater - Brunos Bruder",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1442908",
+            "target_title": "The Singers",
+            "guessed_entity_id": "cinemind_tmdb_739993",
+            "guessed_title": "Metal Lords",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_12592",
+            "target_title": "The Olsen Gang Goes to War",
+            "guessed_entity_id": "cinemind_tmdb_12592",
+            "guessed_title": "The Olsen Gang Goes to War",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_303418",
+            "target_title": "Mujeres infieles",
+            "guessed_entity_id": "cinemind_tmdb_772490",
+            "guessed_title": "El silla de ruedas II",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 4,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1171181",
+            "target_title": "\u00d4kazaki kaibyoden",
+            "guessed_entity_id": "cinemind_tmdb_1171202",
+            "guessed_title": "Nabeshima kaiby\u014dden",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 8,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      },
+      {
+        "policy_name": "ExpectedReduction",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 461,
+        "accuracy": 0.461,
+        "failure_rate": 0.539,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 21.066,
+          "median": 25.0,
+          "min": 9,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 56.477,
+          "median": 3.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 4996.63,
+            "median_candidates": 5134.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 2549.093,
+            "median_candidates": 2763.0,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 1308.421,
+            "median_candidates": 1195.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 693.797,
+            "median_candidates": 590.0,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 392.529,
+            "median_candidates": 325.0,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 270.115,
+            "median_candidates": 193.0,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 201.623,
+            "median_candidates": 121.0,
+            "sample_count": 1000
+          },
+          "8": {
+            "mean_candidates": 158.667,
+            "median_candidates": 68.0,
+            "sample_count": 1000
+          },
+          "9": {
+            "mean_candidates": 134.538,
+            "median_candidates": 42.0,
+            "sample_count": 1000
+          },
+          "10": {
+            "mean_candidates": 120.57057057057057,
+            "median_candidates": 28.0,
+            "sample_count": 999
+          },
+          "11": {
+            "mean_candidates": 106.95417515274949,
+            "median_candidates": 17.0,
+            "sample_count": 982
+          },
+          "12": {
+            "mean_candidates": 102.3326248671626,
+            "median_candidates": 14.0,
+            "sample_count": 941
+          },
+          "13": {
+            "mean_candidates": 103.29977116704805,
+            "median_candidates": 12.0,
+            "sample_count": 874
+          },
+          "14": {
+            "mean_candidates": 106.48837209302326,
+            "median_candidates": 11.0,
+            "sample_count": 817
+          },
+          "15": {
+            "mean_candidates": 107.15123859191655,
+            "median_candidates": 11.0,
+            "sample_count": 767
+          },
+          "16": {
+            "mean_candidates": 109.0418918918919,
+            "median_candidates": 10.0,
+            "sample_count": 740
+          },
+          "17": {
+            "mean_candidates": 110.9901547116737,
+            "median_candidates": 9.0,
+            "sample_count": 711
+          },
+          "18": {
+            "mean_candidates": 113.03918722786648,
+            "median_candidates": 9.0,
+            "sample_count": 689
+          },
+          "19": {
+            "mean_candidates": 115.19672131147541,
+            "median_candidates": 9.0,
+            "sample_count": 671
+          },
+          "20": {
+            "mean_candidates": 116.70229007633588,
+            "median_candidates": 9.0,
+            "sample_count": 655
+          },
+          "21": {
+            "mean_candidates": 114.68356374807988,
+            "median_candidates": 9.0,
+            "sample_count": 651
+          },
+          "22": {
+            "mean_candidates": 109.06976744186046,
+            "median_candidates": 9.0,
+            "sample_count": 645
+          },
+          "23": {
+            "mean_candidates": 102.85981308411215,
+            "median_candidates": 9.0,
+            "sample_count": 642
+          },
+          "24": {
+            "mean_candidates": 98.58722741433021,
+            "median_candidates": 9.0,
+            "sample_count": 642
+          },
+          "25": {
+            "mean_candidates": 87.6828125,
+            "median_candidates": 9.0,
+            "sample_count": 640
+          }
+        },
+        "family_stats": {
+          "time": {
+            "questions_used": 4034,
+            "pct_of_total": 0.1914934016899269,
+            "mean_candidate_reduction_ratio": 0.3805054768242747
+          },
+          "genre": {
+            "questions_used": 7271,
+            "pct_of_total": 0.34515332763695056,
+            "mean_candidate_reduction_ratio": 0.2247767126612741
+          },
+          "media": {
+            "questions_used": 1345,
+            "pct_of_total": 0.06384695718218932,
+            "mean_candidate_reduction_ratio": 0.23163025238381804
+          },
+          "rating": {
+            "questions_used": 1209,
+            "pct_of_total": 0.05739105667900883,
+            "mean_candidate_reduction_ratio": 0.4306601049792497
+          },
+          "country": {
+            "questions_used": 105,
+            "pct_of_total": 0.004984334947308459,
+            "mean_candidate_reduction_ratio": 0.27621661463874236
+          },
+          "language": {
+            "questions_used": 7036,
+            "pct_of_total": 0.3339979113263078,
+            "mean_candidate_reduction_ratio": 0.1415538715445189
+          },
+          "episodes": {
+            "questions_used": 50,
+            "pct_of_total": 0.0023734928320516472,
+            "mean_candidate_reduction_ratio": 0.34160714649292473
+          },
+          "runtime": {
+            "questions_used": 16,
+            "pct_of_total": 0.0007595177062565271,
+            "mean_candidate_reduction_ratio": 0.17447916666666666
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_1530565",
+            "target_title": "Animal Instinct",
+            "guessed_entity_id": "cinemind_tmdb_1530560",
+            "guessed_title": "O M\u00fasico e o Cavalo",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1468057",
+            "target_title": "GATAO: Big Brothers",
+            "guessed_entity_id": "cinemind_tmdb_1404320",
+            "guessed_title": "Wild Agent 2: Peach Assassination",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_558485",
+            "target_title": "Niemandsland",
+            "guessed_entity_id": "cinemind_tmdb_795007",
+            "guessed_title": "the lost time (still running)",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 702,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1753084",
+            "target_title": "A\u00efta (Le Cri)",
+            "guessed_entity_id": "cinemind_tmdb_1512602",
+            "guessed_title": "Le temps d'un instant",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 59,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_703301",
+            "target_title": "Traces fant\u00f4mes, le mus\u00e9e d'un r\u00eave",
+            "guessed_entity_id": "cinemind_tmdb_243468",
+            "guessed_title": "The World According to Tippi",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 6,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_245276",
+            "target_title": "Abba, Bee Gees, Carpenters",
+            "guessed_entity_id": "cinemind_tmdb_245276",
+            "guessed_title": "Abba, Bee Gees, Carpenters",
+            "correct": true,
+            "questions_asked": 21,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1013964",
+            "target_title": "Kulay Rosas Ang Pagibig",
+            "guessed_entity_id": "cinemind_tmdb_1013964",
+            "guessed_title": "Kulay Rosas Ang Pagibig",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_mal_47535",
+            "target_title": "Yu Jian Tuzki",
+            "guessed_entity_id": "cinemind_mal_47452",
+            "guessed_title": "Kan Ge Qiu",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_53219",
+            "target_title": "Mickey's Trailer",
+            "guessed_entity_id": "cinemind_tmdb_235846",
+            "guessed_title": "Heir Bear",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 3,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1244905",
+            "target_title": "Vipra Narayana",
+            "guessed_entity_id": "cinemind_tmdb_1244905",
+            "guessed_title": "Vipra Narayana",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1362512",
+            "target_title": "La sombra",
+            "guessed_entity_id": "cinemind_tmdb_1096637",
+            "guessed_title": "Border",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 800,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_532451",
+            "target_title": "Le fabuleux destin de Perrine Martin",
+            "guessed_entity_id": "cinemind_tmdb_532451",
+            "guessed_title": "Le fabuleux destin de Perrine Martin",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1145071",
+            "target_title": "Alberto Grifi a Visioni Sconsigliate",
+            "guessed_entity_id": "cinemind_tmdb_1717201",
+            "guessed_title": "Ari & Me",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_882420",
+            "target_title": "Idhe Maa Katha",
+            "guessed_entity_id": "cinemind_tmdb_1111626",
+            "guessed_title": "Trapezoid",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 95,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1250659",
+            "target_title": "Virtaset ja Kekkonen",
+            "guessed_entity_id": "cinemind_tmdb_514677",
+            "guessed_title": "Nadja",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1452951",
+            "target_title": "Takada Wataru Teki",
+            "guessed_entity_id": "cinemind_tmdb_303896",
+            "guessed_title": "Dongodi Pelli",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 730,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_504217",
+            "target_title": "Mursala",
+            "guessed_entity_id": "cinemind_tmdb_496011",
+            "guessed_title": "Karutha Sooryan",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 53,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1036694",
+            "target_title": "Agatha Christie",
+            "guessed_entity_id": "cinemind_tmdb_1201346",
+            "guessed_title": "Escape from the World's Most Dangerous Place",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 10,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_875659",
+            "target_title": "In the Blink of an Eye",
+            "guessed_entity_id": "cinemind_tmdb_1290833",
+            "guessed_title": "Ghorme Sabzi",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 8,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1402162",
+            "target_title": "Oslofilm: Lang\u00e5ra - et sommerparadis",
+            "guessed_entity_id": "cinemind_tmdb_1077275",
+            "guessed_title": "AB Hasse W. Tullberg Stockholm",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 40,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      },
+      {
+        "policy_name": "ExpectedReduction",
+        "total_games": 1000,
+        "initial_universe_size": 10000,
+        "correct_guesses": 465,
+        "accuracy": 0.465,
+        "failure_rate": 0.535,
+        "zero_candidate_rate": 0.0,
+        "questions_stats": {
+          "mean": 21.037,
+          "median": 25.0,
+          "min": 9,
+          "max": 25
+        },
+        "final_candidate_stats": {
+          "mean": 47.825,
+          "median": 3.0
+        },
+        "candidate_reduction_curve": {
+          "0": {
+            "mean_candidates": 10000.0,
+            "median_candidates": 10000.0,
+            "sample_count": 1000
+          },
+          "1": {
+            "mean_candidates": 5010.658,
+            "median_candidates": 5134.0,
+            "sample_count": 1000
+          },
+          "2": {
+            "mean_candidates": 2572.433,
+            "median_candidates": 2763.0,
+            "sample_count": 1000
+          },
+          "3": {
+            "mean_candidates": 1323.996,
+            "median_candidates": 1195.0,
+            "sample_count": 1000
+          },
+          "4": {
+            "mean_candidates": 727.711,
+            "median_candidates": 590.0,
+            "sample_count": 1000
+          },
+          "5": {
+            "mean_candidates": 401.745,
+            "median_candidates": 318.0,
+            "sample_count": 1000
+          },
+          "6": {
+            "mean_candidates": 284.741,
+            "median_candidates": 193.0,
+            "sample_count": 1000
+          },
+          "7": {
+            "mean_candidates": 213.803,
+            "median_candidates": 121.0,
+            "sample_count": 1000
+          },
+          "8": {
+            "mean_candidates": 161.489,
+            "median_candidates": 69.0,
+            "sample_count": 1000
+          },
+          "9": {
+            "mean_candidates": 135.793,
+            "median_candidates": 42.0,
+            "sample_count": 1000
+          },
+          "10": {
+            "mean_candidates": 118.21586345381526,
+            "median_candidates": 28.0,
+            "sample_count": 996
+          },
+          "11": {
+            "mean_candidates": 101.20286885245902,
+            "median_candidates": 20.0,
+            "sample_count": 976
+          },
+          "12": {
+            "mean_candidates": 96.04584221748401,
+            "median_candidates": 15.0,
+            "sample_count": 938
+          },
+          "13": {
+            "mean_candidates": 92.95578231292517,
+            "median_candidates": 12.0,
+            "sample_count": 882
+          },
+          "14": {
+            "mean_candidates": 94.76727272727273,
+            "median_candidates": 11.0,
+            "sample_count": 825
+          },
+          "15": {
+            "mean_candidates": 95.34799482535576,
+            "median_candidates": 10.0,
+            "sample_count": 773
+          },
+          "16": {
+            "mean_candidates": 97.38722826086956,
+            "median_candidates": 10.0,
+            "sample_count": 736
+          },
+          "17": {
+            "mean_candidates": 99.36685552407933,
+            "median_candidates": 10.0,
+            "sample_count": 706
+          },
+          "18": {
+            "mean_candidates": 100.78686131386861,
+            "median_candidates": 9.0,
+            "sample_count": 685
+          },
+          "19": {
+            "mean_candidates": 102.10313901345292,
+            "median_candidates": 9.0,
+            "sample_count": 669
+          },
+          "20": {
+            "mean_candidates": 102.62174578866768,
+            "median_candidates": 9.0,
+            "sample_count": 653
+          },
+          "21": {
+            "mean_candidates": 101.76625386996903,
+            "median_candidates": 9.0,
+            "sample_count": 646
+          },
+          "22": {
+            "mean_candidates": 93.31308411214954,
+            "median_candidates": 9.0,
+            "sample_count": 642
+          },
+          "23": {
+            "mean_candidates": 87.7921875,
+            "median_candidates": 9.0,
+            "sample_count": 640
+          },
+          "24": {
+            "mean_candidates": 83.74568288854003,
+            "median_candidates": 9.0,
+            "sample_count": 637
+          },
+          "25": {
+            "mean_candidates": 74.97314375987362,
+            "median_candidates": 9.0,
+            "sample_count": 633
+          }
+        },
+        "family_stats": {
+          "time": {
+            "questions_used": 4120,
+            "pct_of_total": 0.19584541522080146,
+            "mean_candidate_reduction_ratio": 0.3780248769254782
+          },
+          "genre": {
+            "questions_used": 7145,
+            "pct_of_total": 0.3396396824642297,
+            "mean_candidate_reduction_ratio": 0.2268975856030348
+          },
+          "media": {
+            "questions_used": 1325,
+            "pct_of_total": 0.06298426581736939,
+            "mean_candidate_reduction_ratio": 0.23075453545905192
+          },
+          "language": {
+            "questions_used": 7070,
+            "pct_of_total": 0.3360745353424918,
+            "mean_candidate_reduction_ratio": 0.14439094809618652
+          },
+          "rating": {
+            "questions_used": 1220,
+            "pct_of_total": 0.05799305984693635,
+            "mean_candidate_reduction_ratio": 0.42638845544977266
+          },
+          "country": {
+            "questions_used": 91,
+            "pct_of_total": 0.004325711841041973,
+            "mean_candidate_reduction_ratio": 0.3120689410467727
+          },
+          "episodes": {
+            "questions_used": 52,
+            "pct_of_total": 0.002471835337738271,
+            "mean_candidate_reduction_ratio": 0.42905065900101014
+          },
+          "runtime": {
+            "questions_used": 14,
+            "pct_of_total": 0.0006654941293910729,
+            "mean_candidate_reduction_ratio": 0.24935897435897436
+          }
+        },
+        "difficult_targets_sample": [
+          {
+            "target_entity_id": "cinemind_tmdb_1228435",
+            "target_title": "Book Of Knives",
+            "guessed_entity_id": "cinemind_tmdb_1360943",
+            "guessed_title": "East Side Showdown",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 23,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_256764",
+            "target_title": "\u30cf\u30de\u306e\u5b50\u5b9d\u5148\u751f24\u6642 \u6bba\u610f\u306e\u7523\u58f0",
+            "guessed_entity_id": "cinemind_tmdb_272683",
+            "guessed_title": "Nozokiya",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 20,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1295750",
+            "target_title": "New Thursday Ghost Stories Ghost Club: Seven Wonders of School Edition 3",
+            "guessed_entity_id": "cinemind_tmdb_485168",
+            "guessed_title": "Shin Killer Crocodile: Akai kiba",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 5,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_918702",
+            "target_title": "Thy Will Be Done",
+            "guessed_entity_id": "cinemind_tmdb_1125177",
+            "guessed_title": "The Understudy",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 40,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1560591",
+            "target_title": "Taiyou wo Daku Onna",
+            "guessed_entity_id": "cinemind_tmdb_404684",
+            "guessed_title": "The Green Music Box",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 129,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_754019",
+            "target_title": "Ale Alejandra",
+            "guessed_entity_id": "cinemind_tmdb_795007",
+            "guessed_title": "the lost time (still running)",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 702,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_274924",
+            "target_title": "Der Kom\u00f6dienstadel - Parapl\u00fc und Perpendikel",
+            "guessed_entity_id": "cinemind_tmdb_274924",
+            "guessed_title": "Der Kom\u00f6dienstadel - Parapl\u00fc und Perpendikel",
+            "correct": true,
+            "questions_asked": 25,
+            "remaining_candidates": 4,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1028485",
+            "target_title": "Neelpori Nilanjona",
+            "guessed_entity_id": "cinemind_tmdb_1328386",
+            "guessed_title": "Hoppet",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 8,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_321090",
+            "target_title": "On Strike",
+            "guessed_entity_id": "cinemind_tmdb_86753",
+            "guessed_title": "Out-Foxed",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 10,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1236765",
+            "target_title": "Kiseki Taiken! Anbiribab\u014d: 1999 Nostradamus Senritsu no Daiyogen Mysterious Unbelievable",
+            "guessed_entity_id": "cinemind_tmdb_1381688",
+            "guessed_title": "Kwaidan",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_556433",
+            "target_title": "Le permis d'aimer",
+            "guessed_entity_id": "cinemind_tmdb_557430",
+            "guessed_title": "Orange Blossom",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 50,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1407087",
+            "target_title": "The Path of Glory",
+            "guessed_entity_id": "cinemind_tmdb_84002",
+            "guessed_title": "Of Freaks and Men",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 377,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_749194",
+            "target_title": "Mists of the Past",
+            "guessed_entity_id": "cinemind_tmdb_930599",
+            "guessed_title": "Leke",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 38,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1217458",
+            "target_title": "L'Effeuilleuse",
+            "guessed_entity_id": "cinemind_tmdb_1512602",
+            "guessed_title": "Le temps d'un instant",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 59,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_936131",
+            "target_title": "Hardboiled",
+            "guessed_entity_id": "cinemind_tmdb_1125177",
+            "guessed_title": "The Understudy",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 40,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_420259",
+            "target_title": "Ederly",
+            "guessed_entity_id": "cinemind_tmdb_1393149",
+            "guessed_title": "Manja",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 13,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_264034",
+            "target_title": "Thirudan Police",
+            "guessed_entity_id": "cinemind_tmdb_465099",
+            "guessed_title": "Ninnu Kori",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 2,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1123485",
+            "target_title": "Piotr Micha\u0142owski",
+            "guessed_entity_id": "cinemind_tmdb_1123485",
+            "guessed_title": "Piotr Micha\u0142owski",
+            "correct": true,
+            "questions_asked": 22,
+            "remaining_candidates": 1,
+            "terminated_reason": "unique_candidate"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_1539509",
+            "target_title": "Loro della munnizza",
+            "guessed_entity_id": "cinemind_tmdb_343694",
+            "guessed_title": "Magicarena",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 5,
+            "terminated_reason": "max_questions_reached"
+          },
+          {
+            "target_entity_id": "cinemind_tmdb_313931",
+            "target_title": "The Campsite",
+            "guessed_entity_id": "cinemind_tmdb_204917",
+            "guessed_title": "Swapnodana",
+            "correct": false,
+            "questions_asked": 25,
+            "remaining_candidates": 329,
+            "terminated_reason": "max_questions_reached"
+          }
+        ],
+        "zero_candidate_diagnostics_sample": []
+      }
+    ]
+  }
+}

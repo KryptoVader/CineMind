@@ -22,7 +22,7 @@ venv/
 *.swo
 
 # Internal Data, Audits, Reports & Checkpoints (Local only)
-/data/
+/dataset/
 *.parquet
 *.jsonl
 *.log

@@ -11,8 +11,8 @@ from cinemind.data.entity import Entity
 from cinemind.data.feature_registry import FeatureRegistry, DEFAULT_FEATURE_REGISTRY
 
 # Default canonical file paths
-DEFAULT_CANONICAL_PATH = Path("data/canonical/canonical_entities.parquet")
-DIVERSE_100K_PATH = Path("data/canonical/diverse_100k.parquet")
+DEFAULT_CANONICAL_PATH = Path("dataset/canonical/canonical_entities.parquet")
+DIVERSE_100K_PATH = Path("dataset/canonical/diverse_100k.parquet")
 
 
 class DataLoader:

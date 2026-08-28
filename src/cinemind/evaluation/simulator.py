@@ -1,13 +1,13 @@
 """
-Offline Guessing Simulator for CineMind Milestone 2A.
+Offline Guessing Simulator for CineMind Milestone 2A & 2B.
 
-Includes TargetSampler, RandomQuestionPolicy, EliminationEngine, SimulationResult, and GameSimulator.
+Includes TargetSampler, RandomQuestionPolicy, FastQuestionEvaluator, EliminationEngine, SimulationResult, and GameSimulator.
 Enforces strict target isolation: guessing procedure has zero knowledge or access to target entity.
-Includes high-performance evaluation caching for fast multi-game simulations.
+Supports Random, EntropySplit, and ExpectedCandidateReduction policies with vectorized matrix scoring.
 """
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
 import numpy as np
 
 from cinemind.data.entity import Entity
@@ -53,13 +53,20 @@ class RandomQuestionPolicy:
         self.questions = catalog.list_questions()
         self.rng = rng
 
-    def next_question(self, asked_question_ids: Set[str]) -> Optional[Question]:
+    def select_next_question(
+        self,
+        candidates: Optional[List[Entity]] = None,
+        asked_question_ids: Optional[Set[str]] = None,
+        evaluator: Optional[Any] = None,
+        cand_indices: Optional[np.ndarray] = None,
+    ) -> Tuple[Optional[Question], None]:
         """Return next random unused question from catalog."""
-        available = [q for q in self.questions if q.question_id not in asked_question_ids]
+        asked = asked_question_ids or set()
+        available = [q for q in self.questions if q.question_id not in asked]
         if not available:
-            return None
+            return None, None
         idx = self.rng.randint(0, len(available))
-        return available[idx]
+        return available[idx], None
 
 
 class FastQuestionEvaluator:
@@ -87,19 +94,31 @@ class EliminationEngine:
     Has ZERO knowledge of the target entity.
     """
 
-    def __init__(self, candidates: List[Entity], evaluator: Optional[FastQuestionEvaluator] = None) -> None:
-        self._candidates = list(candidates)
+    def __init__(self, candidates: List[Entity], evaluator: Optional[Any] = None) -> None:
+        self._all_candidates = list(candidates)
         self._evaluator = evaluator
+        if evaluator and hasattr(evaluator, "e_id_to_idx"):
+            self.cand_indices = np.array(
+                [evaluator.e_id_to_idx[e.cinemind_id] for e in candidates if e.cinemind_id in evaluator.e_id_to_idx],
+                dtype=np.int32,
+            )
+        else:
+            self.cand_indices = None
+            self._candidates = list(candidates)
 
     @property
     def candidate_count(self) -> int:
+        if self.cand_indices is not None:
+            return len(self.cand_indices)
         return len(self._candidates)
 
     @property
     def candidates(self) -> List[Entity]:
+        if self.cand_indices is not None:
+            return [self._all_candidates[idx] for idx in self.cand_indices]
         return list(self._candidates)
 
-    def apply_answer(self, question: Question, answer: PlayerAnswer) -> List[Entity]:
+    def apply_answer(self, question: Question, answer: PlayerAnswer) -> None:
         """
         Filters candidates based on oracle answer:
         - YES: keep entities where question.evaluate(e) == YES
@@ -108,21 +127,22 @@ class EliminationEngine:
         """
         if answer == PlayerAnswer.UNKNOWN:
             # UNKNOWN answers MUST NEVER eliminate candidates
-            return self._candidates
+            return
 
-        filtered: List[Entity] = []
-        if self._evaluator:
-            eval_fn = self._evaluator.evaluate
-            for e in self._candidates:
-                if eval_fn(question, e) == answer:
-                    filtered.append(e)
-        else:
-            for e in self._candidates:
-                if question.evaluate(e) == answer:
-                    filtered.append(e)
+        if self.cand_indices is not None and self._evaluator and hasattr(self._evaluator, "ans_matrix"):
+            q_idx = self._evaluator.q_id_to_idx.get(question.question_id)
+            if q_idx is not None:
+                target_val = 1 if answer == PlayerAnswer.YES else 2
+                sub_ans = self._evaluator.ans_matrix[q_idx, self.cand_indices]
+                self.cand_indices = self.cand_indices[sub_ans == target_val]
+                return
+
+        filtered = []
+        for e in self.candidates:
+            if question.evaluate(e) == answer:
+                filtered.append(e)
 
         self._candidates = filtered
-        return self._candidates
 
 
 @dataclass
@@ -137,6 +157,7 @@ class SimulationResult:
     history: List[Dict[str, Any]]
     terminated_reason: str
     zero_candidate_info: Optional[Dict[str, Any]] = None
+    policy_name: str = "random"
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -148,6 +169,7 @@ class SimulationResult:
             "questions_asked": self.questions_asked,
             "remaining_candidates": self.remaining_candidates,
             "terminated_reason": self.terminated_reason,
+            "policy_name": self.policy_name,
             "history": self.history,
             "zero_candidate_info": self.zero_candidate_info,
         }
@@ -161,16 +183,19 @@ class GameSimulator:
         candidate_universe: List[Entity],
         question_catalog: QuestionCatalog,
         max_questions: int = 25,
+        policy_type: str = "random",
         precompute_cache: bool = True,
     ) -> None:
         self.candidate_universe = candidate_universe
         self.question_catalog = question_catalog
         self.max_questions = max_questions
+        self.policy_type = policy_type.lower()
 
         self._title_map: Dict[str, str] = {e.cinemind_id: e.title for e in candidate_universe}
 
         if precompute_cache:
-            self._evaluator = FastQuestionEvaluator(catalog=question_catalog, entities=candidate_universe)
+            from cinemind.evaluation.adaptive_policy import VectorizedQuestionEvaluator
+            self._evaluator = VectorizedQuestionEvaluator(catalog=question_catalog, entities=candidate_universe)
         else:
             self._evaluator = None
 
@@ -184,8 +209,18 @@ class GameSimulator:
         # 2. Instantiate Elimination Engine with full candidate universe (target hidden)
         engine = EliminationEngine(candidates=self.candidate_universe, evaluator=self._evaluator)
 
-        # 3. Instantiate Question Selection Policy
-        policy = RandomQuestionPolicy(catalog=self.question_catalog, rng=rng)
+        # 3. Instantiate Policy
+        if self.policy_type == "entropy":
+            from cinemind.evaluation.adaptive_policy import EntropySplitPolicy
+            policy = EntropySplitPolicy(catalog=self.question_catalog)
+            policy_name = "EntropySplit"
+        elif self.policy_type in ("expected_reduction", "reduction"):
+            from cinemind.evaluation.adaptive_policy import ExpectedCandidateReductionPolicy
+            policy = ExpectedCandidateReductionPolicy(catalog=self.question_catalog)
+            policy_name = "ExpectedReduction"
+        else:
+            policy = RandomQuestionPolicy(catalog=self.question_catalog, rng=rng)
+            policy_name = "Random"
 
         asked_question_ids: Set[str] = set()
         history: List[Dict[str, Any]] = []
@@ -194,7 +229,6 @@ class GameSimulator:
 
         step = 0
         while step < self.max_questions:
-            # Check termination criteria before asking question
             if engine.candidate_count == 1:
                 terminated_reason = "unique_candidate"
                 break
@@ -202,15 +236,24 @@ class GameSimulator:
                 terminated_reason = "empty_candidate_set"
                 break
 
-            # Select question using policy
-            question = policy.next_question(asked_question_ids)
+            # Avoid triggering candidate entity list generation when cand_indices are present
+            cand_list = None if engine.cand_indices is not None else engine.candidates
+
+            # Select next question from policy using vectorized evaluator and active candidate indices
+            question, split_score = policy.select_next_question(
+                candidates=cand_list,
+                asked_question_ids=asked_question_ids,
+                evaluator=self._evaluator,
+                cand_indices=engine.cand_indices,
+            )
+
             if question is None:
                 terminated_reason = "no_more_questions"
                 break
 
             asked_question_ids.add(question.question_id)
 
-            # Get answer from oracle (target hidden inside oracle)
+            # Get answer from oracle (target isolated inside oracle)
             answer = oracle.answer(question)
 
             count_before = engine.candidate_count
@@ -219,17 +262,26 @@ class GameSimulator:
 
             step += 1
 
-            # Record step history
-            history.append({
+            # Format step history entry with policy diagnostics
+            h_entry: Dict[str, Any] = {
                 "step": step,
                 "question_id": question.question_id,
                 "text": question.text,
                 "question_family": question.question_family,
                 "oracle_answer": answer.value,
                 "remaining_candidates": count_after,
-            })
+            }
 
-            # Check if candidate pool collapsed to zero and log diagnostic info
+            if split_score:
+                h_entry["score"] = split_score.score
+                h_entry["yes_fraction"] = split_score.yes_fraction
+                h_entry["no_fraction"] = split_score.no_fraction
+                h_entry["unknown_fraction"] = split_score.unknown_fraction
+                h_entry["expected_remaining"] = split_score.expected_remaining_candidates
+                h_entry["expected_reduction_ratio"] = split_score.expected_reduction_ratio
+
+            history.append(h_entry)
+
             if count_after == 0 and zero_candidate_info is None:
                 zero_candidate_info = {
                     "zero_candidate_step": step,
@@ -242,7 +294,6 @@ class GameSimulator:
                 terminated_reason = "empty_candidate_set"
                 break
 
-        # Check final candidate status to determine guess
         guessed_id: Optional[str] = None
         if engine.candidate_count > 0:
             guessed_id = engine.candidates[0].cinemind_id
@@ -251,7 +302,6 @@ class GameSimulator:
 
         correct = (guessed_id == oracle.target_id) if guessed_id else False
 
-        # Resolve titles ONLY at the final reporting stage
         target_title = self._title_map.get(oracle.target_id, oracle.target_id)
         guessed_title = self._title_map.get(guessed_id, guessed_id) if guessed_id else None
 
@@ -266,4 +316,5 @@ class GameSimulator:
             history=history,
             terminated_reason=terminated_reason,
             zero_candidate_info=zero_candidate_info,
+            policy_name=policy_name,
         )

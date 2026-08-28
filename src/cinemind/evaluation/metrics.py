@@ -1,8 +1,8 @@
 """
-Evaluation Metrics Analyzer for CineMind Milestone 2A.
+Evaluation Metrics Analyzer for CineMind Milestone 2A & 2B.
 
 Computes accuracy, failure rate, zero-candidate rate, candidate reduction curves,
-question-family breakdown, and difficult target diagnostics.
+question-family breakdown, difficult target diagnostics, and multi-seed/multi-policy side-by-side comparison tables.
 """
 
 from collections import defaultdict
@@ -13,7 +13,7 @@ from cinemind.evaluation.simulator import SimulationResult
 
 
 class EvaluationMetrics:
-    """Computes and aggregates statistical metrics over simulated game results."""
+    """Computes and aggregates statistical metrics over simulated game results for a single run."""
 
     def __init__(self, results: List[SimulationResult], initial_universe_size: int = 0) -> None:
         self.results = results
@@ -31,17 +31,16 @@ class EvaluationMetrics:
             self.family_stats: Dict[str, Dict[str, Any]] = {}
             self.difficult_targets: List[Dict[str, Any]] = []
             self.zero_candidate_diagnostics: List[Dict[str, Any]] = []
+            self.final_candidate_stats = {"mean": 0.0, "median": 0.0}
             return
 
         # 1. Correctness, Failure Rate, and Zero-Candidate Rate
         self.correct_guesses = sum(1 for r in self.results if r.correct)
         self.accuracy = self.correct_guesses / self.total_games
 
-        # failure_rate = unsuccessful games / total games
         self.unsuccessful_games = sum(1 for r in self.results if not r.correct)
         self.failure_rate = self.unsuccessful_games / self.total_games
 
-        # zero_candidate_rate = games ending in 0 candidates / total games
         self.zero_candidate_games = sum(
             1 for r in self.results if r.terminated_reason == "empty_candidate_set" or r.remaining_candidates == 0
         )
@@ -56,9 +55,15 @@ class EvaluationMetrics:
             "max": int(np.max(q_counts)),
         }
 
+        # Final candidate pool size stats
+        final_cand_counts = [r.remaining_candidates for r in self.results]
+        self.final_candidate_stats = {
+            "mean": float(np.mean(final_cand_counts)),
+            "median": float(np.median(final_cand_counts)),
+        }
+
         # 3. Candidate Reduction Curve across steps (step 0 to max_step)
         step_candidates: Dict[int, List[int]] = defaultdict(list)
-        # Step 0 is initial pool size
         for r in self.results:
             step_candidates[0].append(self.initial_universe_size or (r.history[0]["remaining_candidates"] if r.history else 0))
             for h in r.history:
@@ -88,15 +93,16 @@ class EvaluationMetrics:
                     family_reductions[fam].append(reduction_ratio)
 
         self.family_stats = {}
+        total_q_used = sum(family_counts.values()) or 1
         for fam, cnt in family_counts.items():
             reds = family_reductions[fam]
             self.family_stats[fam] = {
                 "questions_used": cnt,
-                "pct_of_total": float(cnt / sum(family_counts.values())),
+                "pct_of_total": float(cnt / total_q_used),
                 "mean_candidate_reduction_ratio": float(np.mean(reds)) if reds else 0.0,
             }
 
-        # 5. Difficult Targets (unsuccessful games or games taking >= 20 questions)
+        # 5. Difficult Targets
         self.difficult_targets = []
         for r in self.results:
             if not r.correct or r.questions_asked >= 20:
@@ -122,9 +128,10 @@ class EvaluationMetrics:
 
     def summary_report(self) -> str:
         """Format human-readable text summary of benchmark results."""
+        pol_name = self.results[0].policy_name if self.results else "Unknown"
         lines = [
             "============================================================",
-            "CineMind Milestone 2A — Offline Baseline Benchmark Results",
+            f"CineMind Benchmark Results — Policy: {pol_name}",
             "============================================================",
             f"Total Games Simulated:      {self.total_games}",
             f"Initial Candidate Universe: {self.initial_universe_size}",
@@ -139,10 +146,14 @@ class EvaluationMetrics:
             f"  Min:    {self.questions_stats['min']}",
             f"  Max:    {self.questions_stats['max']}",
             "------------------------------------------------------------",
+            "Final Remaining Candidates Per Game:",
+            f"  Mean:   {self.final_candidate_stats['mean']:.2f}",
+            f"  Median: {self.final_candidate_stats['median']:.1f}",
+            "------------------------------------------------------------",
             "Candidate Reduction Curve (Mean Candidates Remaining):",
         ]
 
-        for step in sorted(self.candidate_reduction_curve.keys())[:10]:
+        for step in sorted(self.candidate_reduction_curve.keys())[:11]:
             stats = self.candidate_reduction_curve[step]
             lines.append(f"  Turn {step:2d}: {stats['mean_candidates']:10.1f} candidates (median: {stats['median_candidates']:.0f})")
 
@@ -163,7 +174,9 @@ class EvaluationMetrics:
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert metrics to JSON-serializable dictionary."""
+        pol_name = self.results[0].policy_name if self.results else "Unknown"
         return {
+            "policy_name": pol_name,
             "total_games": self.total_games,
             "initial_universe_size": self.initial_universe_size,
             "correct_guesses": self.correct_guesses,
@@ -171,8 +184,44 @@ class EvaluationMetrics:
             "failure_rate": float(self.failure_rate),
             "zero_candidate_rate": float(self.zero_candidate_rate),
             "questions_stats": self.questions_stats,
+            "final_candidate_stats": self.final_candidate_stats,
             "candidate_reduction_curve": self.candidate_reduction_curve,
             "family_stats": self.family_stats,
             "difficult_targets_sample": self.difficult_targets[:20],
             "zero_candidate_diagnostics_sample": self.zero_candidate_diagnostics[:20],
         }
+
+
+class MultiSeedComparison:
+    """Aggregates EvaluationMetrics results across multiple seeds and policies for side-by-side comparison."""
+
+    def __init__(self, policy_metrics_map: Dict[str, List[EvaluationMetrics]]) -> None:
+        self.policy_metrics = policy_metrics_map
+
+    def summary_table(self) -> str:
+        """Format side-by-side multi-policy multi-seed summary table."""
+        lines = [
+            "==================================================================================================",
+            "CineMind Milestone 2B — Multi-Policy Multi-Seed Comparison Report",
+            "==================================================================================================",
+            f"{'Policy':<25} {'Accuracy (Mean ± Std)':<24} {'Mean Q':<12} {'Median Q':<12} {'Final Candidates':<18} {'Failure Rate':<14}",
+            "--------------------------------------------------------------------------------------------------",
+        ]
+
+        for pol_name, metrics_list in self.policy_metrics.items():
+            accs = [m.accuracy * 100 for m in metrics_list]
+            mean_qs = [m.questions_stats["mean"] for m in metrics_list]
+            med_qs = [m.questions_stats["median"] for m in metrics_list]
+            final_cands = [m.final_candidate_stats["mean"] for m in metrics_list]
+            failures = [m.failure_rate * 100 for m in metrics_list]
+
+            acc_str = f"{np.mean(accs):.2f}% ± {np.std(accs):.2f}%"
+            mq_str = f"{np.mean(mean_qs):.2f}"
+            medq_str = f"{np.mean(med_qs):.1f}"
+            fcand_str = f"{np.mean(final_cands):.1f} ± {np.std(final_cands):.1f}"
+            fail_str = f"{np.mean(failures):.2f}%"
+
+            lines.append(f"{pol_name:<25} {acc_str:<24} {mq_str:<12} {medq_str:<12} {fcand_str:<18} {fail_str:<14}")
+
+        lines.append("==================================================================================================")
+        return "\n".join(lines)
